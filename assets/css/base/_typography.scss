@@ -19,6 +19,8 @@ h4,
 h5,
 h6 {
 	clear: both;
+
+	margin-bottom: 0;
 }
 
 /* COPY */
@@ -75,4 +77,12 @@ ins {
 
 big {
 	font-size: 125%;
+}
+
+.txt-centered {
+	text-align: center;
+}
+
+.txt-lowercase {
+	text-transform: capitalize;
 }

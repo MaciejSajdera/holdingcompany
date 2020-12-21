@@ -10,7 +10,6 @@ html {
 	box-sizing: border-box;
 }
 
-
 body {
 	background: $color__background-body; // Fallback for when there is no custom background color defined.
 }
@@ -41,23 +40,23 @@ figure {
 	margin: 1em 0; // Extra wide images within figure tags don't overflow the content area.
 }
 
-
 /* LINKS */
 a {
-	color: $color__link;
+	color: $color__text-screen;
+	text-decoration: none;
 
 	&:visited {
-		color: $color__link-visited;
+		color: inherit;
 	}
 
 	&:hover,
 	&:focus,
 	&:active {
-		color: $color__link-hover;
+		color: $color__text-screen;
 	}
 
 	&:focus {
-		outline: thin dotted;
+		outline: none;
 	}
 
 	&:hover,
@@ -100,4 +99,94 @@ dd {
 table {
 	margin: 0 0 1.5em;
 	width: 100%;
+}
+
+.sub-text--grey {
+	color: $color__border-input;
+	text-transform: uppercase;
+	@include fluid-type($min_width, $max_width, 10px, 14px);
+}
+
+.read-more {
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 10%;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		color: $color__text-screen;
+	}
+}
+
+.arrow-right {
+	content: url(../dist/svg/arrow_right.svg);
+	font-size: 2em;
+	display: block;
+	width: 1em;
+	height: 1em;
+	color: $color__text-screen;
+}
+
+.site {
+	opacity: 0;
+	transition: all 0.3s ease-in;
+}
+
+.page-loaded {
+	opacity: 1 !important;
+}
+
+.my-preloader {
+	height: 100vh;
+	position: fixed;
+	width: 100vw;
+	background: white;
+	z-index: 99999;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	// transition: all 0.3s ease-in;
+	opacity: 1;
+
+	.preloader-content {
+		background: url(../dist/img/ekipa-logo-png-dark.png) no-repeat;
+		background: url(../dist/svg/ekipa-holding-logo-dark.svg) no-repeat;
+		display: block;
+		height: 10em;
+		width: 10em;
+		background-size: contain;
+		animation: myPreloaderMove 1.5s infinite;
+		position: absolute;
+		// left: 50%;
+		// top: 50%;
+		// transform: translate(-50%, -50%);
+	}
+}
+
+@keyframes myPreloaderMove {
+	0% {
+		transform: scale(1.1);
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(1.1);
+		opacity: 0;
+	}
+}
+
+.my-preloader-off {
+	opacity: 0;
+}
+
+.my-preloader-none {
+	display: none;
 }

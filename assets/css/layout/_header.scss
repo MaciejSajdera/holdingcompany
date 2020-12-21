@@ -1,0 +1,43 @@
+.site-header {
+	position: absolute;
+
+	z-index: 1;
+	width: 100%;
+
+	.site-branding {
+		width: 100%;
+		position: relative;
+	}
+}
+
+.custom-logo-link {
+	display: block;
+	position: absolute;
+	text-indent: -9999px;
+	z-index: 1;
+	top: 2em;
+	margin: auto;
+	width: 10em;
+	height: 3em;
+	background: url(../dist/img/ekipa-logo-png-light.png) no-repeat; //fallback
+	background: url(../dist/svg/ekipa-holding-logo-light.svg) no-repeat;
+	background-size: contain;
+	left: 50%;
+	transform: translate(-50%, 0%);
+}
+
+.custom-logo-link-dark {
+	display: block;
+	position: absolute;
+	margin: auto;
+	top: 2em;
+	text-indent: -9999px;
+	z-index: 1;
+	width: 10em;
+	height: 3em;
+	background: url(../dist/img/ekipa-logo-png-dark.png) no-repeat; //fallback
+	background: url(../dist/svg/ekipa-holding-logo-dark.svg) no-repeat;
+	background-size: contain;
+	left: 50%;
+	transform: translate(-50%, 0%);
+}

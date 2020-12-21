@@ -30,12 +30,13 @@
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
-		
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home" aria-current="page">
+
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link-dark" rel="home" aria-current="page">
 				
-				</a>
+			</a>
+
 			<?php
-			// the_custom_logo();
+						// the_custom_logo();
 			if ( is_front_page() && is_home() ) :
 				?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>

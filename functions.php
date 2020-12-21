@@ -135,17 +135,115 @@ add_action( 'widgets_init', '_s_widgets_init' );
 function _s_scripts() {
 	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css' );
 
-	// Include our dynamic styles.
-	$custom_css = _s_dynamic_styles();
-	wp_add_inline_style( '_s-style', $custom_css );
-
 	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '', true );
 
+	if (
+		is_front_page() ) {
+		wp_enqueue_script( 'scrollAnimations', get_template_directory_uri() . '/dist/js/scrollAnimations.js', array(), '', true );
+	};
+
+	if (
+		is_blog() ) {
+		wp_enqueue_script( 'blogAnimations', get_template_directory_uri() . '/dist/js/blogAnimations.js', array(), '', true );
+	};
+	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
-	}
+	};
 }
 add_action( 'wp_enqueue_scripts', '_s_scripts' );
+
+function is_blog () {
+	global  $post;
+	$posttype = get_post_type($post );
+	return ( ((is_archive()) || (is_author()) || (is_category()) || (is_home()) || (is_single()) || (is_tag())) && ( $posttype == 'post')  ) ? true : false ;
+}
+
+
+function wpb_add_google_fonts() {
+	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=Monda&display=swap', false );
+}
+add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
+
+function change_logo_on_single($html) {
+
+	$single_post_logo = get_field('blog_post_logo', 2);
+
+   if(is_single()){
+      $html = preg_replace('/<img(.*?)\/>/', '<img src="' .$single_post_logo. '" class="custom-logo" alt="" itemprop="logo" />', $html);
+   }
+
+   return $html;
+}
+
+add_filter('get_custom_logo','change_logo_on_single');
+
+
+function my_custom_query( $posts_per_page = 4) {
+	$args = array(
+	  'posts_per_page' => $posts_per_page,
+	  'post_status' => 'publish',
+	  // other args here
+	); 
+	return new WP_Query( $args );
+  }
+
+
+function misha_my_load_more_scripts() {
+ 
+	$your_query = my_custom_query();
+ 
+	// In most cases it is already included on the page and this line can be removed
+	wp_enqueue_script('jquery');
+ 
+	// register our main script but do not enqueue it yet
+	wp_register_script( 'my_loadmore', get_stylesheet_directory_uri() . '/dist/js/myloadmore.js', array('jquery') );
+ 
+	// now the most interesting part
+	// we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
+	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
+	wp_localize_script( 'my_loadmore', 'my_loadmore_params', array(
+		'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php', // WordPress AJAX
+		'posts' => json_encode( $your_query->query_vars ), // everything about your loop is here
+		'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
+		'max_page' => $your_query->max_num_pages
+	) );
+ 
+ 	wp_enqueue_script( 'my_loadmore' );
+}
+
+add_action( 'wp_enqueue_scripts', 'misha_my_load_more_scripts' );
+
+function my_loadmore_ajax_handler(){
+
+	// prepare our arguments for the query
+	$args = json_decode( stripslashes( $_POST['query'] ), true );
+	$args['offset'] = 4;
+	$args['posts_per_page'] = 2;
+	
+ 
+	query_posts( $args );
+
+	// $query = my_custom_query(6);
+	   
+	while ( have_posts() ) { the_post();
+	 // your loop code here
+	 echo '<a class="blog-post" href="'. get_permalink() .'">';
+	 echo '<div class="blog-post__upper" style="background-image: url(' .get_the_post_thumbnail_url(). ')"></div>';
+	 echo '<div class="blog-post__caption">';
+	 echo '<span class="blog-post__date sub-text--grey">'. get_the_date() .'</span>';
+	 echo '<h3 class="uppercase">' . get_the_title() . '</h3>';
+	 echo '<p class="sub-text--grey read-more ">Dowiedz się więcej <span class="arrow-right"></span></p>';
+	 echo '</div>';
+	 echo '</a>';
+   }
+   die();
+}
+ 
+
+add_action('wp_ajax_loadmore', 'my_loadmore_ajax_handler'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_loadmore', 'my_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+
 
 /**
  * Implement the Custom Header feature.

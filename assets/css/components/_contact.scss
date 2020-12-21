@@ -1,0 +1,26 @@
+.contact-section {
+	padding: 1em 15% 0em 15%;
+
+	&__data-wrapper {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+
+		@media screen and (max-width: 992px) {
+			flex-flow: column;
+		}
+	}
+
+	&__data {
+		text-align: center;
+		@include fluid-type($min_width, $max_width, 12px, 15px);
+		font-weight: 600;
+		width: 33%;
+
+		@media screen and (max-width: 992px) {
+			@include fluid-type($min_width, $max_width, 14px, 18px);
+			width: 100%;
+			padding: 1em;
+		}
+	}
+}
