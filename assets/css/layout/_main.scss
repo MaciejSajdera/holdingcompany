@@ -6,11 +6,28 @@ section {
 	}
 }
 
+section.blog-posts {
+	padding: 2em 10% 3em 10%;
+
+	@media screen and (min-width: 992px) {
+		padding: 4em 18% 4em 18%;
+	}
+}
+
 #my-page-header {
 	background: $color__semiblack;
-	height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+	height: 90vh; /* Fallback for browsers that do not support Custom Properties */
 	position: relative;
 	border-bottom: none;
+
+	@media screen and (min-width: 992px) {
+		height: 100vh;
+	}
+
+	// @media screen and (min-width: 992px) {
+	// 	height: 93vh;
+	// 	margin: 2em 2em;
+	// }
 
 	// @media screen and (max-width: 992px) {
 	// 	height: calc(
@@ -33,11 +50,11 @@ section {
 		position: relative;
 		overflow: hidden;
 
-		p {
+		#mainSlogan {
 			margin: 0;
 			text-align: center;
 			color: $color__white_text;
-			@include fluid-type($min_width, $max_width, 24px, 52px);
+			@include fluid-type($min_width, $max_width, 24px, 60px);
 		}
 	}
 
@@ -46,6 +63,7 @@ section {
 		position: absolute;
 		display: block;
 		bottom: -1%; //to prevent border-like looking thin line from #my-page-header bg
+		// bottom: 0%;
 		width: 100%;
 		left: 50%;
 		overflow-x: hidden;
@@ -88,14 +106,14 @@ section {
 			width: 0px;
 			height: 0px;
 			border-top: 7em solid white;
-			border-right: 14em solid transparent;
+			border-right: 10em solid transparent;
 			border-bottom: 10em solid transparent;
-			border-left: 14em solid transparent;
+			border-left: 10em solid transparent;
 			bottom: 0%;
 			left: 50%;
 			transform: translate(-50%, 0) rotate(180deg);
 
-			@media screen and (max-width: 1024px) {
+			@media screen and (max-width: 768px) {
 				width: 100%;
 				height: 100%;
 				border-right: 55vw solid transparent;
@@ -103,12 +121,26 @@ section {
 				border-bottom: 10em solid transparent;
 			}
 
+			// @media screen and (min-width: 768px) and (max-width: 1024px) {
+			// 	width: 100%;
+			// 	height: 100%;
+			// 	border-right: 55vw solid transparent;
+			// 	border-left: 55vw solid transparent;
+			// 	border-bottom: 10em solid transparent;
+			// }
+
 			// @media screen and (min-width: 500px) and (max-width: 1024px) and (orientation: landscape) {
 			// 	border-right: 14em solid transparent;
 			// 	border-left: 14em solid transparent;
 			// 	border-bottom: 10em solid transparent;
 			// }
 		}
+	}
+}
+
+.page-template-home-template-filler {
+	#my-page-header {
+		height: 100vh; /* Fallback for browsers that do not support Custom Properties */
 	}
 }
 

@@ -15,6 +15,41 @@ import smoothscroll from "smoothscroll-polyfill";
 // 	navigation.enableTouchFocus();
 // } );
 
+const cookieInfo = document.querySelector("#cookie-text");
+
+if (cookieInfo) {
+	const cookieInfoText = document.querySelector("#cookie-text").innerHTML;
+
+	let cookieLaw = {
+		dId: "cookie-law-div",
+		bId: "cookie-law-button",
+		iId: "cookie-law-item",
+		show: function(e) {
+			if (localStorage.getItem(cookieLaw.iId)) return !1;
+			var o = document.createElement("div"),
+				i = document.createElement("p"),
+				t = document.createElement("button");
+			(i.innerHTML = e.msg),
+				(t.id = cookieLaw.bId),
+				(t.innerHTML = e.ok),
+				(o.id = cookieLaw.dId),
+				o.appendChild(t),
+				o.appendChild(i),
+				document.body.insertBefore(o, document.body.lastChild),
+				t.addEventListener("click", cookieLaw.hide);
+		},
+		hide: function() {
+			(document.getElementById(cookieLaw.dId).outerHTML = ""),
+				localStorage.setItem(cookieLaw.iId, "1");
+		}
+	};
+
+	cookieLaw.show({
+		msg: cookieInfoText,
+		ok: "Akceptuję"
+	});
+}
+
 window.addEventListener("resize", () => {
 	let vh = window.innerHeight * 0.01;
 	document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -60,33 +95,34 @@ document.addEventListener("DOMContentLoaded", event => {
 		});
 	}
 
-	// const cookieInfoText = document.querySelector("#cookie-text").innerHTML;
+	const structureTab = document.querySelector(".structure");
 
-	// let cookieLaw = {
-	// 	dId: "cookie-law-div",
-	// 	bId: "cookie-law-button",
-	// 	iId: "cookie-law-item",
-	// 	show: function(e) {
-	// 		if (localStorage.getItem(cookieLaw.iId)) return !1;
-	// 		var o = document.createElement("div"),
-	// 			i = document.createElement("p"),
-	// 			t = document.createElement("button");
-	// 		(i.innerHTML = e.msg),
-	// 			(t.id = cookieLaw.bId),
-	// 			(t.innerHTML = e.ok),
-	// 			(o.id = cookieLaw.dId),
-	// 			o.appendChild(t),
-	// 			o.appendChild(i),
-	// 			document.body.insertBefore(o, document.body.lastChild),
-	// 			t.addEventListener("click", cookieLaw.hide, !1);
-	// 	},
-	// 	hide: function() {
-	// 		(document.getElementById(cookieLaw.dId).outerHTML = ""),
-	// 			localStorage.setItem(cookieLaw.iId, "1");
-	// 	}
-	// };
-	// cookieLaw.show({
-	// 	msg: cookieInfoText,
-	// 	ok: "Nie pokazuj więcej"
-	// });
+	if (structureTab) {
+		const allTabMenuPositions = document.querySelectorAll(
+			".tab-menu__position"
+		);
+
+		allTabMenuPositions.forEach(menuTab => {
+			menuTab.addEventListener("click", function() {
+				let tabId = this.dataset.tab;
+				let targetTab = document.querySelector(`#${tabId}`);
+
+				let currentlyActiveMenuTab = document.querySelector(
+					".tab-menu__position--active"
+				);
+				let currentlyActiveTab = document.querySelector(".tab--active");
+
+				currentlyActiveMenuTab.classList.remove("tab-menu__position--active");
+				this.classList.add("tab-menu__position--active");
+
+				currentlyActiveTab.classList.remove("tab--active");
+				currentlyActiveTab.classList.remove("tab--loaded");
+				targetTab.classList.add("tab--active");
+
+				setTimeout(() => {
+					targetTab.classList.add("tab--loaded");
+				}, 200);
+			});
+		});
+	}
 });

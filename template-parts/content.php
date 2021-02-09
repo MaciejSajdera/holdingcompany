@@ -11,9 +11,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-<div class="post-thumbnail" style="background: url(<?php echo get_the_post_thumbnail_url() ?>);     background-size: cover;
-    background-repeat: no-repeat;">
-</div>
+<div class="post-thumbnail" style="background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-repeat: no-repeat;"></div>
 		<div class="single-post__wrapper">
 			<header class="entry-header">
 			<div class="entry-meta">

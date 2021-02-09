@@ -15,6 +15,8 @@ get_header();
 
 			<?php get_template_part( 'template-parts/home-blog-feed', 'page' ); ?>
 
+			<?php get_template_part( 'template-parts/home-structure', 'page' ); ?>
+
 			<?php get_template_part( 'template-parts/home-media', 'page' ); ?>
 
 			<?php get_template_part( 'template-parts/home-contact', 'page' ); ?>
@@ -24,5 +26,4 @@ get_header();
 	</div><!-- #primary -->
 
 <?php
-// get_sidebar();
 get_footer();

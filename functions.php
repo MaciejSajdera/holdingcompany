@@ -138,7 +138,7 @@ function _s_scripts() {
 	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '', true );
 
 	if (
-		is_front_page() ) {
+		is_front_page() || is_page_template('home-template.php') ) {
 		wp_enqueue_script( 'scrollAnimations', get_template_directory_uri() . '/dist/js/scrollAnimations.js', array(), '', true );
 	};
 
@@ -179,6 +179,18 @@ function change_logo_on_single($html) {
 add_filter('get_custom_logo','change_logo_on_single');
 
 
+function trim_title($limit, $words){
+	$source = $words;
+    $source = preg_replace(" (\[.*?\])",'',$source);
+    $source = strip_shortcodes($source);
+    $source = strip_tags($source);
+    $source = substr($source, 0, $limit);
+    $source = substr($excerpt, 0, strripos($source, " "));
+    $source = trim(preg_replace( '/\s+/', ' ', $source));
+    $source = $source.'...';
+    return $source;
+}
+
 function my_custom_query( $posts_per_page = 4) {
 	$args = array(
 	  'posts_per_page' => $posts_per_page,
@@ -189,7 +201,7 @@ function my_custom_query( $posts_per_page = 4) {
   }
 
 
-function misha_my_load_more_scripts() {
+function my_load_more_scripts() {
  
 	$your_query = my_custom_query();
  
@@ -212,7 +224,7 @@ function misha_my_load_more_scripts() {
  	wp_enqueue_script( 'my_loadmore' );
 }
 
-add_action( 'wp_enqueue_scripts', 'misha_my_load_more_scripts' );
+add_action( 'wp_enqueue_scripts', 'my_load_more_scripts' );
 
 function my_loadmore_ajax_handler(){
 
@@ -239,11 +251,14 @@ function my_loadmore_ajax_handler(){
    }
    die();
 }
- 
+
 
 add_action('wp_ajax_loadmore', 'my_loadmore_ajax_handler'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_loadmore', 'my_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
 
+
+//for security reasons
+add_filter('xmlrpc_enabled', '__return_false');
 
 /**
  * Implement the Custom Header feature.

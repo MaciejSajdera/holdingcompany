@@ -3,8 +3,9 @@ body.single {
 		margin: 6em auto 0 auto;
 		background-size: cover;
 		background-repeat: no-repeat;
-		height: 25em;
-		width: 95%;
+		height: 35em;
+		width: 50%;
+		background-position: center;
 
 		@media screen and (max-width: 992px) {
 			height: 15em;
@@ -13,43 +14,73 @@ body.single {
 	}
 
 	.single-post__wrapper {
-		width: 40%;
 		margin: auto;
+		width: 90%;
 
-		padding: 2em 2em;
+		padding: 2em 1em;
+
 		background: $color__background-body;
 
-		@media screen and (max-width: 992px) {
-			width: 90%;
-			padding: 2em 1em;
+		@media screen and (min-width: 992px) {
+			padding: 2em 5em;
+		}
+
+		@media screen and (min-width: 1400px) {
+			width: 60%;
+			padding: 2em 7em;
+		}
+
+		@media screen and (min-width: 1600px) {
+			width: 50%;
 		}
 
 		.entry-header {
 			text-align: center;
 		}
 
-		.entry-content {
-			text-indent: 2em;
-		}
+		// .entry-content {
+		// 	text-indent: 2em;
+		// }
 	}
 
 	.single-post__wrapper--up {
 		animation: postUp 1s forwards;
 
-		@keyframes postUp {
-			0% {
-				transform: translate(0, 0);
-				opacity: 0.9;
-			}
+		@media screen and (min-width: 992px) {
+			@keyframes postUp {
+				0% {
+					transform: translate(0, 0);
+					opacity: 0.9;
+				}
 
-			75% {
-				transform: translate(0, -6.5em);
-				opacity: 1;
-			}
+				75% {
+					transform: translate(0, -6.5em);
+					opacity: 1;
+				}
 
-			100% {
-				transform: translate(0, -6.5em);
-				opacity: 1;
+				100% {
+					transform: translate(0, -6.5em);
+					opacity: 1;
+				}
+			}
+		}
+
+		@media screen and (max-width: 992px) {
+			@keyframes postUp {
+				0% {
+					transform: translate(0, 0);
+					opacity: 0.9;
+				}
+
+				75% {
+					transform: translate(0, -1.5em);
+					opacity: 1;
+				}
+
+				100% {
+					transform: translate(0, -1.5em);
+					opacity: 1;
+				}
 			}
 		}
 	}
@@ -59,7 +90,7 @@ body.single {
 		margin: auto;
 		display: flex;
 		flex-flow: row;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: space-between;
 		transition: all 0.3s ease-in;
 
@@ -72,7 +103,7 @@ body.single {
 			flex-flow: column;
 			justify-content: center;
 
-			width: 14em;
+			width: 45%;
 
 			@media screen and (min-width: 992px) {
 				align-items: center;
@@ -136,23 +167,39 @@ body.single {
 	.post-navigation--wide {
 		animation: navWide 1s forwards;
 
-		@media screen and (max-width: 992px) {
+		@media screen and (max-width: 1400px) {
 			@keyframes navWide {
 				0% {
 					width: 70%;
 				}
 
 				75% {
-					width: 80%;
+					width: 90%;
 				}
 
 				100% {
-					width: 80%;
+					width: 90%;
 				}
 			}
 		}
 
-		@media screen and (min-width: 992px) {
+		@media screen and (min-width: 1400px) {
+			@keyframes navWide {
+				0% {
+					width: 40%;
+				}
+
+				75% {
+					width: 60%;
+				}
+
+				100% {
+					width: 60%;
+				}
+			}
+		}
+
+		@media screen and (min-width: 1600px) {
 			@keyframes navWide {
 				0% {
 					width: 40%;

@@ -17,13 +17,17 @@
 	z-index: 1;
 	top: 2em;
 	margin: auto;
-	width: 10em;
+	width: 11em;
 	height: 3em;
 	background: url(../dist/img/ekipa-logo-png-light.png) no-repeat; //fallback
 	background: url(../dist/svg/ekipa-holding-logo-light.svg) no-repeat;
 	background-size: contain;
 	left: 50%;
 	transform: translate(-50%, 0%);
+
+	@media screen and (min-width: 992px) {
+		top: 6em;
+	}
 }
 
 .custom-logo-link-dark {

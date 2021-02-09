@@ -39,5 +39,6 @@ document.addEventListener("DOMContentLoaded", event => {
 			: "";
 	};
 
+	blogGrid && isElementInViewport(blogGrid) ? onScrollAnimations() : "";
 	document.addEventListener("scroll", onScrollAnimations);
 });

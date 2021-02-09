@@ -45,3 +45,11 @@
 .bypostauthor {
 	display: block;
 }
+
+.page-template-home-template {
+	.section-header {
+		text-align: center;
+		@include fluid-type($min_width, $max_width, 18px, 22px);
+		margin-bottom: 1.5em;
+	}
+}

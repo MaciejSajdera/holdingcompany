@@ -3,7 +3,7 @@
 	grid-template-columns: 1fr 1fr;
 	column-gap: 4.5em;
 	margin: 3em 0;
-	grid-row-gap: 3em;
+	grid-row-gap: 5em;
 
 	@media screen and (max-width: 992px) {
 		grid-template-columns: 1fr;
@@ -14,6 +14,7 @@
 
 .entry-header-blog {
 	margin-top: 10em;
+	text-align: center;
 }
 
 .media-grid {
@@ -28,14 +29,6 @@
 		grid-template-rows: 1fr 1fr 1fr;
 		grid-row-gap: 1em;
 	}
-}
-
-.blog-posts__header,
-.media-posts__header,
-.contact-section__header {
-	text-align: center;
-	@include fluid-type($min_width, $max_width, 18px, 22px);
-	margin-bottom: 1.5em;
 }
 
 .blog-grid-home,
@@ -66,6 +59,7 @@
 		height: 50%;
 		margin-bottom: 0 !important;
 		background-size: cover;
+		background-position: center;
 
 		// &:hover {
 		// 	&:before {
@@ -190,6 +184,8 @@
 		line-height: 3em;
 		margin-top: 0;
 		font-weight: 400;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 }
 
@@ -204,7 +200,7 @@
 }
 
 .blog__read-more {
-	margin-top: 4em;
+	margin-top: 6em;
 }
 
 section.media-posts {

@@ -7,16 +7,17 @@
  * @package _s
  */
 
-$home_header_2 = get_field('home_header_2');
+$home_section_media_header = get_field('home_section_media_header');
+$home_section_media_subheader = get_field('home_section_media_subheader');
 
 ?>
 
 <section class="media-posts">
-		<div class="media-posts__header">
-			<a href=<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>>
-			<h3>Media o nas</h3>
-			<span class="sub-text--grey"><?php echo $home_header_2 ?></span>
-			</a>
+		<div class="media-posts__header section-header">
+
+			<h3><?php echo $home_section_media_header ?></h3>
+			<span class="sub-text--grey"><?php echo $home_section_media_subheader ?></span>
+
 		</div>
 
 		<div class="media-grid media-grid-home">

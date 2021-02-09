@@ -1,12 +1,14 @@
 #cookie-law-div {
 	z-index: 10000000;
 	position: fixed;
-	width: 90%;
-	bottom: 3%;
+	width: 100%;
+	bottom: 0%;
 	left: 50%;
 	transform: translate(-50%, 0%);
 	padding: 1em;
 	border-radius: 10px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 	background: #fff;
 	border: 1px solid rgba(0, 0, 0, 0.15);
 	font-size: 15px;
@@ -59,7 +61,7 @@
 	padding: 0 2em !important;
 
 	@media screen and (max-width: 992px) {
-		margin: 1em auto auto;
+		margin: 2em auto auto;
 	}
 }
 #cookie-law-div button:hover {

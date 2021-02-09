@@ -14,7 +14,7 @@
 	}
 
 	@media screen and (max-width: 1024px) {
-		padding: 1.5em 4em;
+		padding: 1.5em 3em;
 		@include fluid-type($min_width, $max_width, 14px, 16px);
 	}
 }

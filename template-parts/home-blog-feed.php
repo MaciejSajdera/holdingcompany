@@ -7,14 +7,15 @@
  * @package _s
  */
 
-$home_header_1 = get_field('home_header_1');
+$home_section_blog_header = get_field('home_section_blog_header');
+$home_section_blog_subheader = get_field('home_section_blog_subheader');
 ?>
 
 <section class="blog-posts">
-		<div class="blog-posts__header">
+		<div class="blog-posts__header section-header">
 			<a href=<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>>
-			<h3>Aktualności</h3>
-			<span class="sub-text--grey"><?php echo $home_header_1 ?></span>
+			<h3><?php echo $home_section_blog_header ?></h3>
+			<span class="sub-text--grey"><?php echo $home_section_blog_subheader ?></span>
 			</a>
 		</div>
 
@@ -43,7 +44,6 @@ $home_header_1 = get_field('home_header_1');
 
 		</div>
 		
-		<div class="test"></div>
 		<div class="blog__read-more txt-centered">
 
 

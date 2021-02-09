@@ -26,7 +26,7 @@ get_header('blog');
 				?>
 				<header class="entry-header entry-header-blog">
 				<div class="blog-posts__header">
-				<h3>Aktualności</h3>
+				<h1>Aktualności</h1>
 				<span class="sub-text--grey">Bądź na bieżąco</span>
 		</div>
 				</header><!-- .entry-header -->
@@ -97,5 +97,4 @@ get_header('blog');
 	</div><!-- #primary -->
 
 <?php
-// get_sidebar();
 get_footer();

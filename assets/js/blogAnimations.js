@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", event => {
 	blogGrid && allBlogPosts
 		? [...allBlogPosts].map((post, i) => {
 				console.log(post, i);
-				post.style.transitionDelay = `${i / 3}s`;
+				post.style.transitionDelay = `${i / 2}s`;
 				post.style.opacity = "1";
 		  })
 		: "";
@@ -27,5 +27,8 @@ document.addEventListener("DOMContentLoaded", event => {
 			: "";
 	};
 
+	postNavigation && isElementInViewport(postNavigation)
+		? singleAnimationsSinglePost()
+		: "";
 	document.addEventListener("scroll", singleAnimationsSinglePost);
 });
