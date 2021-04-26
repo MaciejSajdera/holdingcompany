@@ -95,6 +95,7 @@ mix
 	.js(`${devPath}/js/scrollAnimations.js`, "js")
 	.js(`${devPath}/js/myloadmore.js`, "js")
 	.js(`${devPath}/js/blogAnimations.js`, "js")
+	.js(`${devPath}/js/simple-ajax-post-pagination.js`, "js")
 	.js(`${devPath}/js/admin/customizer.js`, "js");
 
 /*

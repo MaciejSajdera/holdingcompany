@@ -7,7 +7,7 @@ section {
 }
 
 section.blog-posts {
-	padding: 2em 10% 3em 10%;
+	padding: 2em 5% 3em 5%;
 
 	@media screen and (min-width: 992px) {
 		padding: 4em 18% 4em 18%;
@@ -16,9 +16,13 @@ section.blog-posts {
 
 #my-page-header {
 	background: $color__semiblack;
-	height: 90vh; /* Fallback for browsers that do not support Custom Properties */
+	height: 60vh;
 	position: relative;
 	border-bottom: none;
+
+	height: calc(
+		var(--vh, 1vh) * 60
+	); // height depends on browsers panel on the top
 
 	@media screen and (min-width: 992px) {
 		height: 100vh;
@@ -59,16 +63,20 @@ section.blog-posts {
 	}
 
 	.scroll-down {
-		height: 100%;
+		height: 100vh;
 		position: absolute;
 		display: block;
-		bottom: -1%; //to prevent border-like looking thin line from #my-page-header bg
-		// bottom: 0%;
+		bottom: 0%;
 		width: 100%;
 		left: 50%;
 		overflow-x: hidden;
 		transform: translate(-50%, 0%);
 		cursor: pointer;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+		@media screen and (min-width: 992px) {
+			bottom: -1%; //to prevent border-like looking thin line from #my-page-header bg
+		}
 
 		&:before {
 			content: "";
@@ -78,7 +86,7 @@ section.blog-posts {
 			position: absolute;
 			height: 2.5em;
 			width: 2.5em;
-			bottom: 2%;
+			bottom: 1.75em;
 			left: 50%;
 			transform: translate(-50%, 0%);
 			z-index: 1;

@@ -17,10 +17,15 @@ $tab4 = get_field('tab_4');
 $tab5 = get_field('tab_5');
 
 ?>
+	<section class="structure">
 
-<section class="structure">
+		<span id="fractals"></span>
+
+
 		<div class="structure__header section-header">
-			<h3><?php echo $home_section_structure_header ?></h3>
+			<h3>
+				<!-- <?php echo $home_section_structure_header ?> -->
+			</h3>
 			<span class="sub-text--grey"><?php echo $home_section_structure_subheader ?></span>
 			</a>
 		</div>
@@ -228,4 +233,3 @@ $tab5 = get_field('tab_5');
 		</div>
 
 </section>
-

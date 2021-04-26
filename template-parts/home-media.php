@@ -27,9 +27,8 @@ $home_section_media_subheader = get_field('home_section_media_subheader');
 						$args = array(  
 							'post_type' => 'media-posts',
 							'post_status' => 'publish',
-							'posts_per_page' => 999, 
-							'orderby' => 'title', 
-							'order' => 'ASC', 
+							'posts_per_page' => 999,
+							'order' => 'DESC', 
 						);
 					
 						$your_query = new WP_Query( $args );
@@ -40,9 +39,11 @@ $home_section_media_subheader = get_field('home_section_media_subheader');
 							$category = get_the_category();
 
 							$media_link = get_field('media_link',get_the_ID());
+							$media_post_description = get_field('media_post_description', get_the_ID());
 
 							echo '<a class="media-post" href="'.$media_link.'" target="_blank">';
-							echo '<h3 class="uppercase">' . get_the_title() . '</h3>';
+							echo '<div class="media-post__title"><h3>' . get_the_title() . '</h3></div>';
+							echo '<p class="uppercase">'. $media_post_description .'</p>';
 							echo '</a>';
 
 

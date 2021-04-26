@@ -34,7 +34,6 @@ input[type="search"] {
 	padding: 3px;
 }
 
-
 input[type="text"],
 input[type="email"],
 input[type="url"],
@@ -48,5 +47,125 @@ textarea {
 
 	&:focus {
 		color: $color__text-input-focus;
+	}
+}
+
+.subpage {
+	form {
+		padding: 0;
+
+		@media screen and (min-width: 992px) {
+			padding: 0 2em;
+		}
+
+		p {
+			margin: 0;
+		}
+
+		.wpcf7-form-control-wrap {
+			height: 100%;
+			display: block;
+		}
+
+		.wpcf7-not-valid-tip {
+			position: absolute;
+			display: block;
+			z-index: 1;
+			right: 10px;
+			top: 10px;
+			height: 100%;
+			/* width: 100%; */
+			/* border: 1px solid red; */
+			font-size: 13px;
+		}
+
+		.wpcf7-response-output {
+			text-align: center;
+			border: 0;
+			margin-top: 1em;
+		}
+
+		.ajax-loader {
+			margin: 1em auto;
+			display: block;
+		}
+
+		input,
+		textarea {
+			padding: 1.25em 1em;
+			outline: none;
+			border-radius: 0;
+			width: 100%;
+			border: none;
+			border-bottom: 1px solid;
+			display: block;
+			border-color: $color__border-media;
+			resize: none;
+			transition: all 0.3s ease-in-out;
+
+			&:hover {
+				background: $color__lightest-grey;
+			}
+		}
+
+		.wpcf7-submit {
+			cursor: pointer;
+			border: 1px solid #000;
+		}
+
+		.ajax-loader {
+			background-image: url(../dist/img/form-loader-dark.gif) !important;
+			background-position: center;
+			background-size: contain;
+			width: 3em !important;
+			height: 3em !important;
+			background-color: transparent !important;
+
+			&:before {
+				display: none;
+			}
+		}
+
+		input[type="file"] {
+			position: absolute;
+			left: 0;
+			opacity: 0;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		}
+
+		.upload-file-label {
+			display: block;
+			height: 100%;
+			position: relative;
+		}
+
+		.idupload-file {
+			position: absolute;
+			width: 100%;
+			top: 0;
+		}
+
+		#filename {
+			display: inline-block;
+			position: relative;
+
+			#remove-file {
+				position: absolute;
+				display: block;
+				width: 10px;
+				height: 10px;
+				top: 0;
+				right: -1em;
+				background: red;
+
+				display: none;
+			}
+		}
+
+		.dragover {
+			background-color: #aaa;
+		}
 	}
 }

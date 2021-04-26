@@ -1,96 +1,115 @@
-/* MENUS */
-
 .main-navigation {
-	clear: both;
 	display: block;
-	float: left;
 	width: 100%;
+	height: 0;
+	position: fixed;
+	z-index: 101;
+	@media screen and (min-width: 992px) {
+	}
 
-	ul {
-		display: none;
-		list-style: none;
-		margin: 0;
-		padding-left: 0;
+	&__active {
+		z-index: 101;
+	}
+}
 
-		ul {
-			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-			float: left;
-			position: absolute;
-			top: 1.5em;
-			left: -999em;
-			z-index: 99999;
+.menu-menu-1-container {
+	height: 100vh;
+	width: 100vw;
+	background: $color__background-body;
+	position: absolute;
+	transition: 0.5s ease-in-out;
+	transform: translate(100%, 0%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
 
-			ul {
-				left: -999em;
-				top: 0;
-			}
+	@media screen and (min-width: 992px) {
+		transform: translate(0%, 0%);
+		height: 5em;
+		justify-content: space-between;
+		flex-flow: row;
+		box-shadow: $box-shadow_standard;
+	}
 
-			li {
-				&:hover > ul,
-				&.focus > ul {
-					left: 100%;
-				}
-			}
+	.menu-logo {
+		content: "";
+		display: block;
+		position: absolute;
+		margin: auto;
+		top: 2em;
+		text-indent: -9999px;
+		z-index: 1;
+		width: 10em;
+		height: 3em;
+		background: url(../dist/img/ekipa-logo-png-dark.png) no-repeat; //fallback
+		background: url(../dist/svg/ekipa-holding-logo-dark.svg) no-repeat;
+		background-size: contain;
+		background-position: center;
+		left: 50%;
+		transform: translate(-50%, 0%);
 
-			a {
-				width: 200px;
-			}
-
-			:hover > a,
-			.focus > a {
-			}
-
-			a:hover,
-			a.focus {
-			}
+		@media screen and (min-width: 992px) {
+			position: static;
+			width: 20%;
+			transform: translate(0, 0);
+			margin: 0;
+			height: 2em;
 		}
+	}
+}
 
-		li:hover > ul,
-		li.focus > ul {
-			left: auto;
+.page-template-home-template {
+	.menu-menu-1-container {
+		transform: translate(100%, 0%);
+		@media screen and (min-width: 992px) {
+			transform: translate(0%, -100%);
 		}
+	}
+}
+
+ul.menu {
+	height: 50%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-flow: column;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+
+	@media screen and (min-width: 992px) {
+		padding-right: 5em;
+		flex-flow: row;
 	}
 
 	li {
-		float: left;
-		position: relative;
-
-		&:hover > a,
-		&.focus > a {
-		}
-	}
-
-	a {
-		display: block;
-		text-decoration: none;
-	}
-
-	.current_page_item > a,
-	.current-menu-item > a,
-	.current_page_ancestor > a {
+		padding: 1em;
 	}
 }
 
-/* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
+.navigation__toggled {
+	transform: translate(0%, 0%) !important;
+
+	// @media screen and (min-width: 992px) {
+
+	//  }
 }
 
-/* Switching from toggle menu to full display */
-@media screen and (min-width: 37.5em) {
-	.menu-toggle {
+.menu-toggle {
+	z-index: 102;
+	@media screen and (min-width: 992px) {
 		display: none;
 	}
-	.main-navigation ul {
-		display: block;
-	}
+
+	position: absolute;
+	right: 1em;
+	top: 1em;
 }
 
 .comment-navigation,
 .posts-navigation,
 .post-navigation {
-
 	.site-main & {
 		margin: 0 0 1.5em;
 		overflow: hidden;

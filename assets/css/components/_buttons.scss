@@ -1,5 +1,5 @@
 .button--black {
-	background-color: black;
+	background-color: black !important;
 	color: $color__white_text !important;
 	padding: 1em 1.5em;
 	text-transform: uppercase;
@@ -8,13 +8,13 @@
 	transition: all 0.3s ease-in-out;
 
 	&:hover {
-		background-color: $color__white_text;
+		background-color: $color__white_text !important;
 		color: black !important;
-		border: 1px solid black;
+		border: 1px solid black !important;
 	}
 
-	@media screen and (max-width: 1024px) {
-		padding: 1.5em 3em;
+	@media screen and (max-width: 992px) {
+		padding: 1em 2em;
 		@include fluid-type($min_width, $max_width, 14px, 16px);
 	}
 }

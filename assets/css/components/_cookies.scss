@@ -1,73 +1,184 @@
-#cookie-law-div {
+// #cookie-law-div {
+// 	z-index: 10000000;
+// 	position: fixed;
+// 	width: 100%;
+// 	bottom: 0%;
+// 	left: 50%;
+// 	transform: translate(-50%, 0%);
+// 	padding: 1em;
+// 	border-radius: 10px;
+// 	border-bottom-left-radius: 0;
+// 	border-bottom-right-radius: 0;
+// 	background: #fff;
+// 	border: 1px solid rgba(0, 0, 0, 0.15);
+// 	font-size: 15px;
+// 	box-shadow: rgba(23, 43, 99, 0.4) 0 7px 28px;
+// 	display: flex;
+// 	justify-content: space-between;
+// 	align-items: center;
+// 	flex-flow: row-reverse;
+// 	opacity: 0;
+
+// 	@media screen and (max-width: 992px) {
+// 		border-radius: 0;
+// 		max-width: 100%;
+// 		right: 0;
+// 		bottom: 0;
+// 		flex-flow: column-reverse;
+// 	}
+// }
+
+// #cookie-law-div a {
+// 	font-size: 15px;
+// 	text-decoration: none;
+// 	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+// }
+// #cookie-law-div a:hover {
+// 	opacity: 0.7;
+// }
+// #cookie-law-div p {
+// 	margin: 0;
+// 	color: #000;
+
+// 	@media screen and (max-width: 992px) {
+// 		text-align: center;
+// 	}
+// }
+// #cookie-law-div button {
+// 	align-self: center;
+// 	line-height: 25px;
+// 	height: 25px;
+// 	white-space: nowrap;
+// 	color: #fff;
+// 	background-color: #000;
+// 	border: none;
+// 	opacity: 0.6;
+// 	font-size: 12px;
+// 	cursor: pointer;
+// 	border-radius: 50px;
+// 	margin: auto 2em;
+// 	transition: all 0.3s ease-in-out;
+// 	padding: 0 2em !important;
+
+// 	@media screen and (max-width: 992px) {
+// 		margin: 2em auto auto;
+// 	}
+// }
+// #cookie-law-div button:hover {
+// 	opacity: 1;
+// }
+
+// #cookie-text {
+// 	display: none;
+// }
+
+.cookie-law-notification {
 	z-index: 10000000;
+	opacity: 0;
+	transition: all 0.3s ease-in 0s;
 	position: fixed;
 	width: 100%;
 	bottom: 0%;
 	left: 50%;
-	transform: translate(-50%, 0%);
-	padding: 1em;
-	border-radius: 10px;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-	background: #fff;
+	transform: translate(-50%, 100%);
+	padding: 1em 5em;
+	border-radius: 0;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background: $color__background-body;
 	border: 1px solid rgba(0, 0, 0, 0.15);
 	font-size: 15px;
-	box-shadow: rgba(23, 43, 99, 0.4) 0 7px 28px;
-	display: flex;
+	box-shadow: rgba(23, 43, 99, 0.4) 0px 7px 28px;
+	display: none;
 	justify-content: space-between;
 	align-items: center;
 	flex-flow: row-reverse;
-	opacity: 0;
 
 	@media screen and (max-width: 992px) {
 		border-radius: 0;
 		max-width: 100%;
+		width: 100%;
 		right: 0;
 		bottom: 0;
 		flex-flow: column-reverse;
+		padding: 1em;
 	}
 }
 
-#cookie-law-div a {
+.cookies-notification-on {
+	display: flex;
+	opacity: 1;
+	animation: cookieInfoUp 1s forwards;
+	transition: all 0.3s ease-in-out;
+
+	@keyframes cookieInfoUp {
+		0% {
+			transform: translate(-50%, 100%);
+			opacity: 0;
+		}
+
+		90% {
+			transform: translate(-50%, 0%);
+			opacity: 1;
+		}
+
+		100% {
+			transform: translate(-50%, 0%);
+			opacity: 1;
+		}
+	}
+}
+
+.cookies-notification-off {
+	display: none;
+}
+
+.cookie-law-accepted {
+	transform: translate(-50%, 100%) !important;
+	opacity: 0 !important;
+}
+
+.cookie-law-notification a {
 	font-size: 15px;
 	text-decoration: none;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
-#cookie-law-div a:hover {
-	opacity: 0.7;
-}
-#cookie-law-div p {
+
+.cookie-law-notification p {
 	margin: 0;
-	color: #000;
+	color: black;
 
 	@media screen and (max-width: 992px) {
 		text-align: center;
 	}
 }
-#cookie-law-div button {
+
+.cookie-law-notification button {
 	align-self: center;
-	line-height: 25px;
-	height: 25px;
+	line-height: 40px;
+	height: 40px;
 	white-space: nowrap;
 	color: #fff;
 	background-color: #000;
 	border: none;
-	opacity: 0.6;
+	// opacity: 0.6;
 	font-size: 12px;
+	font-weight: 600;
 	cursor: pointer;
 	border-radius: 50px;
 	margin: auto 2em;
 	transition: all 0.3s ease-in-out;
 	padding: 0 2em !important;
 
+	&:focus,
+	&:active {
+		outline: none;
+	}
+
 	@media screen and (max-width: 992px) {
-		margin: 2em auto auto;
+		margin: 1em auto auto;
 	}
 }
-#cookie-law-div button:hover {
+.cookie-law-notification button:hover {
 	opacity: 1;
-}
-
-#cookie-text {
-	display: none;
 }

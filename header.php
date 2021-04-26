@@ -29,45 +29,25 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
-		
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home" aria-current="page">
-				
-				</a>
-			<?php
-			// the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$_s_description = get_bloginfo( 'description', 'display' );
-			if ( $_s_description || is_customize_preview() ) :
-				?>
-				<!-- <p class="site-description"><?php echo $_s_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p> -->
-			<?php endif;
-			 ?>
-		</div><!-- .site-branding -->
 
-				<!-- Menu hidden -->
-		<!-- <nav id="site-navigation" class="main-navigation">
+		<div class="site-branding">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home" aria-current="page"></a>
+		</div>
+
+		<nav id="site-navigation" class="main-navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', '_s' ); ?></button>
+
 			<?php
 			wp_nav_menu(
 				array(
 					'theme_location' => 'menu-1',
 					'menu_id'        => 'primary-menu',
+					'items_wrap' => '<a href="'.esc_url( home_url( '/' ) ).'" class="menu-logo" rel="home" aria-current="page"></a><ul id="%1$s" class="%2$s">%3$s</ul>',
 				)
 			);
 			?>
-		</nav> -->
-		<!-- #site-navigation -->
+		</nav>
 
-
-	</header><!-- #masthead -->
+	</header>
 
 	<div id="content" class="site-content">
