@@ -133,15 +133,15 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css', array(), '1.6');
+	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css', array(), '4.91');
 
-	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '', true );
+	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '4.5', true);
 
-	wp_enqueue_script( 'blogAnimations', get_template_directory_uri() . '/dist/js/blogAnimations.js', array(), '', true );
+	wp_enqueue_script( 'blogAnimations', get_template_directory_uri() . '/dist/js/blogAnimations.js', array(), '4.4', true );
 
 	if (
 		is_front_page() || is_page_template('home-template.php') ) {
-		wp_enqueue_script( 'scrollAnimations', get_template_directory_uri() . '/dist/js/scrollAnimations.js', array(), '', true );
+		wp_enqueue_script( 'scrollAnimations', get_template_directory_uri() . '/dist/js/scrollAnimations.js', array(), '4.4', true );
 	};
 
 	// if (
@@ -151,7 +151,7 @@ function _s_scripts() {
 
 		if (
 			is_page_template('career-page-template.php') ) {
-			wp_enqueue_script( 'simple-ajax-post-pagination', get_template_directory_uri() . '/dist/js/simple-ajax-post-pagination.js', array(), '', true );
+			wp_enqueue_script( 'simple-ajax-post-pagination', get_template_directory_uri() . '/dist/js/simple-ajax-post-pagination.js', array(), '4.4', true );
 		};
 
 	

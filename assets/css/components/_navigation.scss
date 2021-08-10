@@ -7,6 +7,8 @@
 	@media screen and (min-width: 992px) {
 	}
 
+	// display: none;
+
 	&__active {
 		z-index: 101;
 	}
@@ -26,7 +28,7 @@
 
 	@media screen and (min-width: 992px) {
 		transform: translate(0%, 0%);
-		height: 5em;
+		height: $header_height;
 		justify-content: space-between;
 		flex-flow: row;
 		box-shadow: $box-shadow_standard;
@@ -37,17 +39,19 @@
 		display: block;
 		position: absolute;
 		margin: auto;
-		top: 2em;
+		// top: 2em;
 		text-indent: -9999px;
 		z-index: 1;
-		width: 10em;
+		width: 7em;
 		height: 3em;
 		background: url(../dist/img/ekipa-logo-png-dark.png) no-repeat; //fallback
 		background: url(../dist/svg/ekipa-holding-logo-dark.svg) no-repeat;
 		background-size: contain;
 		background-position: center;
-		left: 50%;
-		transform: translate(-50%, 0%);
+		// left: 50%;
+		// transform: translate(-50%, 0%);
+		left: 1em;
+		top: 1em;
 
 		@media screen and (min-width: 992px) {
 			position: static;
@@ -59,17 +63,17 @@
 	}
 }
 
-.page-template-home-template {
-	.menu-menu-1-container {
-		transform: translate(100%, 0%);
-		@media screen and (min-width: 992px) {
-			transform: translate(0%, -100%);
-		}
-	}
-}
+// .page-template-home-template {
+// 	.menu-menu-1-container {
+// 		transform: translate(100%, 0%);
+// 		@media screen and (min-width: 992px) {
+// 			transform: translate(0%, -100%);
+// 		}
+// 	}
+// }
 
 ul.menu {
-	height: 50%;
+	// height: 50%;
 	justify-content: center;
 	align-items: center;
 	display: flex;
@@ -77,23 +81,77 @@ ul.menu {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	padding-bottom: 5em;
 
 	@media screen and (min-width: 992px) {
 		padding-right: 5em;
+		padding-bottom: 0;
 		flex-flow: row;
 	}
 
 	li {
 		padding: 1em;
+
+		// a {
+		// 	@include fluid-type($min_width, $max_width, 22px, 26px);
+		// }
+	}
+
+	a {
+		position: relative;
+		&:after {
+			content: "";
+			position: absolute;
+			height: 2px;
+			width: 0%;
+			background: black;
+			left: 0;
+			bottom: -0.25em;
+			transition: all 0.3s ease-in-out;
+		}
+
+		&:hover {
+			@media screen and (max-width: 992px) {
+				font-weight: 600;
+			}
+
+			@media screen and (min-width: 992px) {
+				&:after {
+					content: "";
+					position: absolute;
+					height: 2px;
+					width: 100%;
+					background: black;
+					left: 0;
+					bottom: -0.25em;
+				}
+			}
+		}
+	}
+
+	.current-menu-item {
+		a {
+			position: relative;
+			font-weight: 600;
+			&:after {
+				content: "";
+				position: absolute;
+				height: 2px;
+				width: 100%;
+				background: black;
+				left: 0;
+				bottom: -0.25em;
+			}
+		}
 	}
 }
 
 .navigation__toggled {
 	transform: translate(0%, 0%) !important;
 
-	// @media screen and (min-width: 992px) {
-
-	//  }
+	@media screen and (min-width: 992px) {
+		transform: translate(0%, -100%) !important;
+	}
 }
 
 .menu-toggle {
@@ -103,9 +161,62 @@ ul.menu {
 	}
 
 	position: absolute;
-	right: 1em;
-	top: 1em;
+	right: 0em;
+	top: 0em;
+	width: 70px;
+	height: 70px;
+	background-color: transparent;
+	border: none;
+
+	.ham {
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+		transition: transform 400ms;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+
+		@media screen and (max-width: 992px) {
+			font-size: 0.65em;
+		}
+	}
+	.ham.active {
+		.line {
+			stroke: #000 !important;
+		}
+	}
+	.hamRotate.active {
+		transform: rotate(45deg);
+	}
+	.hamRotate180.active {
+		transform: rotate(180deg);
+	}
+	.line {
+		fill: none;
+		transition: stroke-dasharray 400ms, stroke-dashoffset 400ms, stroke 400ms;
+		stroke: #000;
+		stroke-width: 5.5;
+		stroke-linecap: round;
+	}
+
+	.ham4 .top {
+		stroke-dasharray: 40 121;
+	}
+	.ham4 .bottom {
+		stroke-dasharray: 40 121;
+	}
+	.ham4.active .top {
+		stroke-dashoffset: -68px;
+	}
+	.ham4.active .bottom {
+		stroke-dashoffset: -68px;
+	}
 }
+
+// .menu-toggle--black-stroke {
+
+// }
 
 .comment-navigation,
 .posts-navigation,

@@ -5,7 +5,7 @@
   Page template without sidebar
  */
 
-get_header('blog');
+get_header();
 $contact_for_fans = get_field("contact_for_fans");
 ?>
 
@@ -15,7 +15,8 @@ $contact_for_fans = get_field("contact_for_fans");
 				<div class="subpage__header-image" style="background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-repeat: no-repeat;">
 					<?php echo '<h1>'.$contact_for_fans["welcome_header"].'</h1>' ?>
 				</div>
-					<div class="content__wrapper">
+				
+				<div class="content__wrapper">
 					
 					<h3 class="content__intro-text"> <?php echo $contact_for_fans["welcome_text"] ?> </h3>
 

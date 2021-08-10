@@ -4,16 +4,30 @@
  * description: >-
   Page template without sidebar
  */
+$contact_for_career = get_field("contact_for_career");
+$form_header = get_field("form_header");
 
-get_header('blog');
+get_header();
 ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main subpage">
 
+				<div class="subpage__header-image" style="background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-repeat: no-repeat;">
+						<?php echo '<h1>'.$contact_for_career["welcome_header"].'</h1>' ?>
+				</div>
+
 					<div class="content__wrapper">
 
-					<h3 class="content__intro-text"> <?php echo $contact_for_fans["welcome_text"] ?> </h3>
+						<div class="subpage job-offer__form-section">
+
+							<h3 class="content__intro-text"><?php echo $form_header ?></h3>
+
+							<?php echo do_shortcode('[contact-form-7 id="278" title="Prześlij swoje CV"]'); ?>
+
+						</div>
+
+						<h3 class="content__intro-text"> <?php echo $contact_for_career["welcome_text"] ?> </h3>
 
 						<div class="job-offers-wrapper">
 
@@ -49,8 +63,8 @@ get_header('blog');
 										'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
 										'format' => '?paged=%#%',
 										'prev_next' => TRUE,
-										'current' => max(1, $paged),
-										// 'current' => max( 1, $the_query->query_vars['paged'] ),
+										// 'current' => max(1, $paged),
+										'current' => max( 1, $the_query->query_vars['paged'] ),
 										'total' => $the_query->max_num_pages,
 										'type' => 'array',
 										'prev_text' => '',
@@ -82,6 +96,9 @@ get_header('blog');
 						'paged' 		=> $paged,
 						);    
 
+						// Set today's date
+   						//  $the_date_today = get_the_time('r');
+
 						$job_offers_query = new WP_Query( $job_offers );
 
 						if ( $job_offers_query->have_posts() ) : 
@@ -90,16 +107,24 @@ get_header('blog');
 
 								$job_offers_query->post_title(); $job_offers_query->the_post();
 
-								// $your_query->post_title(); $your_query->the_post();
-								// post_title();
-								// the_post();
-								// $category = get_the_category();
-
 								echo '<a class="blog-post" href="'. get_permalink() .'">';
+
+									$datetime1 = new DateTime( $post->post_date );
+									$datetime2 = new DateTime(); // current date
+									$interval = $datetime1->diff( $datetime2 );
+
+									$days_passed = (int)$interval->format( '%a');
+
+
+									if ( $days_passed <= 14 ) {
+										echo '<span class="job-offer__new">Nowa</span>';
+									}
+
 									echo '<div class="blog-post__upper" style="background-image: url(' .get_the_post_thumbnail_url(). ')"></div>';
-									echo '<div class="blog-post__caption">';
-									echo '<span class="blog-post__date sub-text--grey">'. get_the_date() .'</span>';
-									echo '<h3 class="uppercase">' . get_the_title() . '</h3>';
+									echo '<div class="blog-post__caption job-offer__caption">';
+									echo '<h3 class="uppercase">' . mb_strimwidth( get_the_title(), 0, 49, '...' ) . '</h3>';
+									echo '<div class="job-offer__location"><span class="job-offer__location-icon"></span>'.get_field("job_city").'</div>';
+									// echo '<span class="blog-post__date sub-text--grey">'. get_the_date() .'</span>';
 									echo '<p class="sub-text--grey read-more ">Dowiedz się więcej <span class="arrow-right"></span></p>';
 									echo '</div>';
 								echo '</a>';
@@ -121,13 +146,11 @@ get_header('blog');
 
 						<?php wp_reset_postdata(); ?>
 
-
-
 						<?php else : ?>
    							 <p class="text-warning"><?php esc_html_e( 'Brak ofert do wyświetlenia.'); ?></p>
 						<?php endif; ?>
 
-					<?php echo do_shortcode('[contact-form-7 id="278" title="Prześlij swoje CV"]'); ?>
+
 
 				</div>
 

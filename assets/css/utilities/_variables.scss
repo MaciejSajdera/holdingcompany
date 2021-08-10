@@ -17,6 +17,7 @@ $color__link-visited: #800080; //purple
 $color__link-hover: #191970; //midnightblue
 $color__text-main: #404040;
 $color__white_text: #fff;
+$color__grey_text: #9a9a9a;
 
 $color__border-button: #ccc #ccc #bbb;
 $color__border-button-hover: #ccc #bbb #aaa;
@@ -49,3 +50,5 @@ $break__large: 64.063em;
 /* Common values */
 $post_up_distance--mobile: -1.5rem;
 $post_up_distance--desktop: -6.5rem;
+
+$header_height: 5rem;

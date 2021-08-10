@@ -26,6 +26,11 @@ section.blog-posts {
 
 	@media screen and (min-width: 992px) {
 		height: 100vh;
+		height: calc(
+			(var(--vh, 1vh) * 100 - 5rem)
+		); // height depends on browsers panel on the top
+
+		margin-top: $header_height;
 	}
 
 	// @media screen and (min-width: 992px) {

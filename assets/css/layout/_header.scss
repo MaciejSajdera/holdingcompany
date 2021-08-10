@@ -1,7 +1,11 @@
 .site-header {
 	z-index: 1;
 	width: 100%;
-	height: 5em;
+	height: $header_height;
+
+	// @media screen and (min-width: 992px) {
+	// 	height: $header_height;
+	// }
 
 	.site-branding {
 		width: 100%;
@@ -20,18 +24,29 @@
 	position: absolute;
 	text-indent: -9999px;
 	z-index: 1;
-	top: 2em;
-	margin: auto;
-	width: 11em;
+	top: 1.75em;
+	text-indent: -9999px;
+	z-index: 1;
+	width: 7em;
 	height: 3em;
 	background: url(../dist/img/ekipa-logo-png-light.png) no-repeat; //fallback
 	background: url(../dist/svg/ekipa-holding-logo-light.svg) no-repeat;
 	background-size: contain;
-	left: 50%;
-	transform: translate(-50%, 0%);
+	// left: 50%;
+	// transform: translate(-50%, 0%);
+	left: 1em;
+
+	// @media screen and (min-width: 992px) {
+	// 	top: 6em;
+	// }
 
 	@media screen and (min-width: 992px) {
-		top: 6em;
+		display: none;
+
+		//temp
+		// top: 6em;
+		// width: 10em;
+		// height: 3em;
 	}
 }
 
@@ -39,14 +54,55 @@
 	display: block;
 	position: absolute;
 	margin: auto;
-	top: 2em;
+	top: 1.75em;
 	text-indent: -9999px;
 	z-index: 1;
-	width: 10em;
+	width: 7em;
 	height: 3em;
 	background: url(../dist/img/ekipa-logo-png-dark.png) no-repeat; //fallback
 	background: url(../dist/svg/ekipa-holding-logo-dark.svg) no-repeat;
 	background-size: contain;
-	left: 50%;
-	transform: translate(-50%, 0%);
+	left: 1em;
+
+	//temp
+	// left: 50%;
+	// transform: translate(-50%, 0%);
+
+	@media screen and (min-width: 992px) {
+		display: none;
+
+		//temp
+		// width: 10em;
+		// top: 3.5em;
+		// left: 50%;
+		// transform: translate(-50%, 0%);
+	}
+}
+
+.home {
+	.custom-logo-link {
+		left: 50%;
+		transform: translate(-50%, 0%);
+	}
+
+	.custom-logo-link-dark {
+		display: block;
+		position: absolute;
+		margin: auto;
+		top: 1.5em;
+		text-indent: -9999px;
+		z-index: 1;
+		width: 7em;
+		height: 3em;
+		background: url(../dist/img/ekipa-logo-png-dark.png) no-repeat; //fallback
+		background: url(../dist/svg/ekipa-holding-logo-dark.svg) no-repeat;
+		background-size: contain;
+		// left: 50%;
+		// transform: translate(-50%, 0%);
+		left: 1em;
+
+		@media screen and (min-width: 992px) {
+			display: none;
+		}
+	}
 }

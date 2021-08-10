@@ -79,9 +79,7 @@ document.addEventListener("DOMContentLoaded", event => {
 		cookieLawDiv ? cookieLawDiv.classList.add("page-loaded") : "";
 
 		mainSlogan ? mainSlogan.classList.add("mainSlogan--up") : "";
-		document.body.classList.contains("blog") && allPostsHeader
-			? allPostsHeader.classList.add("allPostsHeader--up")
-			: "";
+		allPostsHeader ? allPostsHeader.classList.add("allPostsHeader--up") : "";
 	}, 1100);
 
 	smoothscroll.polyfill();
@@ -140,30 +138,52 @@ document.addEventListener("DOMContentLoaded", event => {
 	const dropzone = document.querySelector(".upload-file-label");
 
 	const filename = document.createElement("P");
-
-	fileInput.addEventListener("change", function() {
-		filenameContainer.appendChild(filename);
-		filename.innerText = fileInput.value.split("\\").pop();
-
-		filename ? (removeFile.style.display = "block") : "";
-	});
-
-	fileInput.addEventListener("dragenter", function() {
-		dropzone.classList.toggle("dragover");
-	});
-
-	fileInput.addEventListener("ondragend", function() {
-		dropzone.classList.remove("dragover");
-	});
-
 	const removeFile = document.querySelector("#remove-file");
 
-	removeFile.addEventListener("click", function() {
-		console.log("test");
-		clearFileInput(fileInput);
+	if (fileInput) {
+		fileInput.addEventListener("change", function() {
+			filenameContainer.appendChild(filename);
+			filename.innerText = fileInput.value.split("\\").pop();
 
-		filenameContainer.removeChild(filename);
-		filename.innerText = "";
-		this.style.display = "none";
-	});
+			filename ? (removeFile.style.display = "block") : "";
+		});
+
+		fileInput.addEventListener("dragenter", function() {
+			dropzone.classList.toggle("dragover");
+		});
+
+		fileInput.addEventListener("dragend", function() {
+			dropzone.classList.remove("dragover");
+		});
+
+		fileInput.addEventListener("drop", function() {
+			dropzone.classList.remove("dragover");
+		});
+
+		fileInput.addEventListener("dragexit", function() {
+			dropzone.classList.remove("dragover");
+		});
+
+		fileInput.addEventListener("dragleave", function() {
+			dropzone.classList.remove("dragover");
+		});
+
+		removeFile.addEventListener("click", function() {
+			clearFileInput(fileInput);
+
+			filenameContainer.removeChild(filename);
+			filename.innerText = "";
+			this.style.display = "none";
+		});
+	}
+
+	document.addEventListener(
+		"wpcf7mailsent",
+		function(event) {
+			filenameContainer.removeChild(filename);
+			filename.innerText = "";
+			removeFile.style.display = "none";
+		},
+		false
+	);
 });

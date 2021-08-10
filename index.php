@@ -12,7 +12,7 @@
  * @package evenus
  */
 
-get_header('blog');
+get_header();
 
 ?>
 

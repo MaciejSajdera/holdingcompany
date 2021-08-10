@@ -87,11 +87,12 @@ textarea {
 
 		.ajax-loader {
 			margin: 1em auto;
-			display: block;
+			display: none;
 		}
 
 		input,
-		textarea {
+		textarea,
+		.upload-file-label {
 			padding: 1.25em 1em;
 			outline: none;
 			border-radius: 0;
@@ -135,11 +136,26 @@ textarea {
 			width: 100%;
 		}
 
+		.upload-file-label__wrapper {
+			border-bottom: 1px solid;
+			border-color: $color__border-media;
+			display: block;
+			br {
+				display: none;
+			}
+		}
+
 		.upload-file-label {
 			display: block;
 			height: 100%;
 			position: relative;
+			border: 2px dashed transparent;
 		}
+
+		// .upload-file-label,
+		// #filename {
+		// 	padding-left: 1em;
+		// }
 
 		.idupload-file {
 			position: absolute;
@@ -150,22 +166,110 @@ textarea {
 		#filename {
 			display: inline-block;
 			position: relative;
+			margin-top: 1em;
 
 			#remove-file {
 				position: absolute;
 				display: block;
-				width: 10px;
-				height: 10px;
-				top: 0;
-				right: -1em;
-				background: red;
-
+				width: 1em;
+				height: 1em;
+				top: -0.25em;
+				right: -1.25em;
+				cursor: pointer;
+				background-image: url(../dist/svg/close_button.svg);
+				background-position: center;
+				background-size: contain;
 				display: none;
 			}
 		}
 
 		.dragover {
-			background-color: #aaa;
+			background-color: $color__lightest-grey;
+			border: 2px dashed black;
+		}
+
+		label {
+			display: block;
+		}
+
+		.wpcf7-radio {
+			display: flex;
+			flex-flow: column;
+
+			.wpcf7-list-item-label {
+				width: 20em;
+			}
+
+			label {
+				display: flex;
+				flex-flow: row-reverse;
+				align-items: center;
+			}
+		}
+
+		.collaboration-type {
+			&__description {
+				padding: 1.25em 1em 0;
+				color: #666;
+				display: block;
+			}
+
+			select {
+				cursor: pointer;
+			}
+
+			br {
+				display: none;
+			}
+
+			&:hover {
+				background: $color__lightest-grey;
+			}
+		}
+
+		select {
+			// border: 1px solid $color__lightest-grey;
+			border-top: none;
+			border-right: none;
+			border-left: none;
+			border-bottom: 1px solid $color__border-media;
+			width: 100%;
+			margin-top: 0.5em;
+			min-height: 40px;
+			font-size: 0.95rem;
+			outline: none;
+			background: transparent !important;
+			padding: 1.25em 1em;
+		}
+
+		.button--black {
+			@include fluid-type($min_width, $max_width, 14px, 16px);
 		}
 	}
+
+	form.submitting {
+		.ajax-loader {
+			display: block;
+		}
+	}
+
+	form.invalid {
+		.wpcf7-response-output {
+			color: #dc3232;
+		}
+	}
+
+	form.sent {
+		.wpcf7-response-output {
+			color: #46b450;
+		}
+	}
+}
+
+.job-offer__form-section {
+	margin-bottom: 5em;
+}
+
+.grecaptcha-badge {
+	display: none !important;
 }

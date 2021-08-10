@@ -11,42 +11,70 @@ export default class Navigation {
 		this.menuContainer = menuContainer;
 		this.button = this.navigationWrapper.querySelector(".menu-toggle");
 		this.menu = this.menuContainer.querySelector(".menu");
+		this.svgButton = document.querySelector("#svgButton");
 	}
 
 	setupNavigation() {
 		//Show menu after target is passed
-		const target = document.querySelector(".site-header");
+		const target = document.querySelector("#my-page-header");
 		const element = this.menuContainer;
 
-		const callbackScrollUpArrow = (entries, observer) => {
+		const callbackWelcomeView = (entries, observer) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
-					this.navigationWrapper.classList.remove("main-navigation__active");
-					element.classList.remove("navigation__toggled");
+					this.button.querySelectorAll(".line").forEach(line => {
+						line.style.stroke = "#fff";
+					});
 				} else {
-					this.navigationWrapper.classList.add("main-navigation__active");
-					element.classList.add("navigation__toggled");
+					this.button.querySelectorAll(".line").forEach(line => {
+						line.style.stroke = "#000";
+					});
 				}
 			});
 		};
 
-		let optionsScrollUpArrow = {
+		let optionsWelcomeView = {
 			root: document.querySelector("#scrollArea"),
 			rootMargin: "0px",
 			threshold: 0.1
 		};
 
-		let observerScrollUpArrow = new IntersectionObserver(
-			callbackScrollUpArrow,
-			optionsScrollUpArrow
+		let observerWelcomeView = new IntersectionObserver(
+			callbackWelcomeView,
+			optionsWelcomeView
 		);
 
-		function handleDesktopChange(e) {
-			if (e.matches && target) {
-				console.log("Media Query Mobile Matched!");
-				observerScrollUpArrow.observe(target);
+		const handleDesktopChange = e => {
+			if (e.matches) {
+				console.log("Media Query Desktop Matched!");
+
+				if (target) {
+					observerWelcomeView.disconnect();
+				}
+
+				var lastScrollTop = 0;
+
+				// element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+				window.addEventListener(
+					"scroll",
+					() => {
+						// or window.addEventListener("scroll"....
+						var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+						if (st > lastScrollTop) {
+							this.navigationWrapper.classList.add("main-navigation__active");
+							element.classList.add("navigation__toggled");
+						} else {
+							this.navigationWrapper.classList.remove(
+								"main-navigation__active"
+							);
+							element.classList.remove("navigation__toggled");
+						}
+						lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+					},
+					false
+				);
 			}
-		}
+		};
 
 		const mediaQueryDesktop = window.matchMedia("(min-width: 992px)");
 		mediaQueryDesktop.addListener(handleDesktopChange);
@@ -55,7 +83,10 @@ export default class Navigation {
 		function handleMobileChange(e) {
 			if (e.matches) {
 				console.log("Media Query Mobile Matched!");
-				observerScrollUpArrow.disconnect();
+
+				if (document.querySelector("BODY").classList.contains("home")) {
+					observerWelcomeView.observe(target);
+				}
 			}
 		}
 
@@ -63,10 +94,14 @@ export default class Navigation {
 		mediaQueryMobile.addListener(handleMobileChange);
 		handleMobileChange(mediaQueryMobile);
 
-		this.button.addEventListener("click", e => {
-			console.log(e);
-			this.navigationWrapper.classList.toggle("navigation-wrapper__toggled");
-			this.menuContainer.classList.toggle("navigation__toggled");
-		});
+		if (this.button) {
+			this.button.addEventListener("click", e => {
+				this.svgButton.classList.toggle("active");
+				this.navigationWrapper.classList.toggle("navigation-wrapper__toggled");
+				this.menuContainer.classList.toggle("navigation__toggled");
+			});
+		}
+
+
 	}
 }

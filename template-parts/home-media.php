@@ -7,18 +7,10 @@
  * @package _s
  */
 
-$home_section_media_header = get_field('home_section_media_header');
-$home_section_media_subheader = get_field('home_section_media_subheader');
+
 
 ?>
 
-<section class="media-posts">
-		<div class="media-posts__header section-header">
-
-			<h3><?php echo $home_section_media_header ?></h3>
-			<span class="sub-text--grey"><?php echo $home_section_media_subheader ?></span>
-
-		</div>
 
 		<div class="media-grid media-grid-home">
 					<?php
@@ -52,9 +44,3 @@ $home_section_media_subheader = get_field('home_section_media_subheader');
 				wp_reset_postdata();
 				?>
 			</div>
-
-		<!-- <div class="txt-centered">
-		<a class="read-more" href=<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>>Zobacz wszystkie</a> -->
-
-</section>
-

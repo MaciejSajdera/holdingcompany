@@ -17,7 +17,22 @@ get_header();
 
 			<?php get_template_part( 'template-parts/home-structure', 'page' ); ?>
 
-			<?php get_template_part( 'template-parts/home-media', 'page' ); ?>
+			<?php
+			$home_section_media_header = get_field('home_section_media_header', get_option( 'page_on_front' ));
+			$home_section_media_subheader = get_field('home_section_media_subheader', get_option( 'page_on_front' ));
+			?>
+
+			<section class="media-posts">
+				<div class="media-posts__header section-header">
+
+					<h3><?php echo $home_section_media_header ?></h3>
+					<span class="sub-text--grey"><?php echo $home_section_media_subheader ?></span>
+
+				</div>
+
+				<?php get_template_part( 'template-parts/home-media', 'page' ); ?>
+
+			</section>
 
 			<?php 
 			$home_section_contact_header = get_field('home_section_contact_header', get_option( 'page_on_front' ));

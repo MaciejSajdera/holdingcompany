@@ -15,7 +15,7 @@ $cookie_info = get_field('cookie_info', 8);
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
-	<?php get_template_part( 'template-parts/home-contact', 'page' ); ?>
+
 		<div class="sub-text--grey site-info">
 			@ <?php echo get_bloginfo( 'name' ); ?>
 		</div>
