@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="my-page-header" <?php post_class(); ?> style="background-image: url(<?php echo get_field('home_background_photo') ?>); background-repeat: no-repeat; background-size: cover; background-position: 20%;">
+<article id="my-page-header" <?php post_class(); ?> style="background-image: url(<?php echo get_field('home_background_photo') ?>); background-repeat: no-repeat; background-size: cover;">
 	<header class="entry-header">
 
 		<!-- <span id="mainSlogan"><?php the_content(); ?></span> -->

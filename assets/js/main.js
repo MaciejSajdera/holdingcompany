@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", event => {
 	}
 
 	const mainNavigation = document.querySelector(".main-navigation");
-	const mainMenuContainer = document.querySelector(".menu-menu-1-container");
+	const mainMenuContainer = document.querySelector(".main-menu-container");
 
 	const navigation = new Navigation(mainNavigation, mainMenuContainer);
 

@@ -8,6 +8,7 @@
 
 html {
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
 
 .error-404 {
 	display: flex;
-	height: 100vh;
+	min-height: 70vh;
 
 	.page-header {
 		margin: auto;
@@ -116,9 +117,51 @@ table {
 }
 
 .sub-text--grey {
-	color: $color__border-input;
+	// color: $color__border-input;
+	color: $color__grey_text;
 	text-transform: uppercase;
 	@include fluid-type($min_width, $max_width, 12px, 14px);
+}
+
+.wrapper-flex {
+	&__drow-mcol {
+		display: flex;
+		flex-flow: column;
+		justify-content: flex-start;
+		row-gap: 4rem;
+
+		@media screen and (min-width: 992px) {
+			flex-flow: row;
+			column-gap: 4rem;
+		}
+
+		& > * {
+			flex: 1;
+		}
+	}
+}
+
+#breadcrumbs {
+	@media screen and (max-width: 992px) {
+		display: none;
+	}
+
+	@media screen and (min-width: 992px) {
+		position: absolute;
+		top: 1rem;
+		left: 3rem;
+	}
+
+	position: absolute;
+	top: 1rem;
+	left: 3rem;
+
+	a,
+	span {
+		color: $color__grey_text;
+		text-transform: uppercase;
+		@include fluid-type($min_width, $max_width, 11px, 12px);
+	}
 }
 
 .read-more {
@@ -141,6 +184,7 @@ table {
 	width: 1em;
 	height: 1em;
 	color: $color__text-screen;
+	margin-left: 1rem;
 }
 
 .site {
@@ -209,3 +253,80 @@ table {
 // .ic-pagination a {
 // 	pointer-events: none;
 // }
+
+.document-file-container {
+	display: flex;
+	justify-content: center;
+	flex-flow: column;
+	align-items: center;
+	width: fit-content;
+	margin: auto auto 3rem;
+
+	p {
+		font-weight: 700;
+		border-bottom: 2px solid black;
+		padding-bottom: 1em;
+		@include fluid-type($min_width, $max_width, 18px, 34px);
+	}
+}
+
+.collaborators-container {
+	display: flex;
+	justify-content: center;
+	flex-flow: column;
+	align-items: center;
+	width: fit-content;
+	margin: auto;
+
+	img {
+		margin-bottom: 2rem;
+	}
+
+	p {
+		font-weight: 700;
+		// border-bottom: 2px solid black;
+		padding-bottom: 1em;
+		text-align: center;
+	}
+}
+
+$capital_market_element_spacing: 3rem;
+
+.capital_market_institutions-container {
+	display: flex;
+	justify-content: space-between;
+	flex-flow: column;
+	width: fit-content;
+	margin: auto;
+	row-gap: $capital_market_element_spacing;
+	margin-top: 4rem;
+
+	@media screen and (min-width: 992px) {
+		flex-flow: row;
+		flex-wrap: wrap;
+	}
+
+	.institution {
+		width: 100%;
+		justify-content: space-between;
+		text-align: center;
+		display: flex;
+		flex-flow: column;
+		padding: 0 1rem $capital_market_element_spacing;
+		border-bottom: 1px solid $color__border-input;
+
+		// &:after {
+		// 	content: '';
+
+		// }
+
+		p {
+			font-weight: 700;
+			margin-top: 0;
+		}
+
+		@media screen and (min-width: 992px) {
+			width: 40%;
+		}
+	}
+}

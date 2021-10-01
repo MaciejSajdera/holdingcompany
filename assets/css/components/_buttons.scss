@@ -1,20 +1,46 @@
-.button--black {
-	background-color: black !important;
-	color: $color__white_text !important;
-	padding: 1em 1.5em;
-	text-transform: uppercase;
-	border: 1px solid transparent;
-	@include fluid-type($min_width, $max_width, 10px, 14px);
-	transition: all 0.3s ease-in-out;
+.button {
+	width: 100%;
+	text-align: center;
 
-	&:hover {
-		background-color: $color__white_text !important;
-		color: black !important;
-		border: 1px solid black !important;
+	&--black {
+		background-color: black !important;
+		color: $color__white_text !important;
+		padding: 1em 1.5em;
+		text-transform: uppercase;
+		border: 1px solid transparent;
+		@include fluid-type($min_width, $max_width, 10px, 14px);
+		transition: all 0.3s ease-in-out;
+
+		&:hover {
+			background-color: $color__white_text !important;
+			color: black !important;
+			border: 1px solid black !important;
+		}
+
+		@media screen and (max-width: 992px) {
+			padding: 1em 2em;
+			@include fluid-type($min_width, $max_width, 14px, 16px);
+		}
 	}
 
-	@media screen and (max-width: 992px) {
-		padding: 1em 2em;
-		@include fluid-type($min_width, $max_width, 14px, 16px);
+	&--download {
+		display: flex;
+		justify-content: center;
+		// align-items: center;
+		max-width: 220px;
+
+		&:before {
+			content: url(../dist/svg/download.svg);
+			width: 1em;
+			height: 1em;
+			margin-right: 0.75em;
+			transition: inherit;
+		}
+
+		&:hover {
+			&:before {
+				filter: invert(1);
+			}
+		}
 	}
 }

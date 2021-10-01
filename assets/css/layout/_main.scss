@@ -16,6 +16,7 @@ section.blog-posts {
 
 #my-page-header {
 	background: $color__semiblack;
+	background-position: 20%;
 	height: 60vh;
 	position: relative;
 	border-bottom: none;
@@ -29,8 +30,8 @@ section.blog-posts {
 		height: calc(
 			(var(--vh, 1vh) * 100 - 5rem)
 		); // height depends on browsers panel on the top
-
-		margin-top: $header_height;
+		background-position: unset;
+		margin-top: 5rem;
 	}
 
 	// @media screen and (min-width: 992px) {

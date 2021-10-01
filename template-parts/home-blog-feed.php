@@ -50,10 +50,10 @@ $home_section_blog_subheader = get_field('home_section_blog_subheader');
 		<?php
 			// don't display the button if there are not enough posts
 			if (  $your_query->found_posts > 4 ) {
-				?> <a class="my_loadmore button--black" href=<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>>Zobacz więcej</a> <?php
+				?> <a class="my_loadmore button button--black" href=<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>>Zobacz więcej</a> <?php
 
 			} else {
-				?>	<a class="button--black" href=<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>>Zobacz wszystkie</a> <?php
+				?>	<a class="button button--black" href=<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>>Zobacz wszystkie</a> <?php
 			}
 		?>
 		

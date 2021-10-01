@@ -276,16 +276,22 @@ section.media-posts {
 }
 
 .job-offers-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 2em;
 	margin: 3em 0;
-	grid-row-gap: 5em;
+
+	display: flex;
+	flex-flow: column;
 
 	@media screen and (max-width: 992px) {
-		grid-template-columns: 1fr;
-		grid-template-rows: 1fr 1fr 1fr;
+		// grid-template-columns: 1fr;
+		// grid-template-rows: 1fr 1fr 1fr;
 		grid-row-gap: 2em;
+	}
+
+	@media screen and (min-width: 992px) {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-row-gap: 5em;
 	}
 
 	.text-warning {
