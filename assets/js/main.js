@@ -69,8 +69,8 @@ document.addEventListener("DOMContentLoaded", event => {
 		myPreloader ? myPreloader.classList.add("my-preloader-none") : "";
 		page ? page.classList.add("page-loaded") : "";
 
-		const blogGrid = document.querySelector(".blog-grid");
-		new RevealChildrenOf(blogGrid, 4);
+		const blogGridNews = document.querySelector(".blog-grid--news");
+		new RevealChildrenOf(blogGridNews, 4);
 
 		const jobOffersGrid = document.querySelector(".job-offers-grid");
 		new RevealChildrenOf(jobOffersGrid, 4);
@@ -176,6 +176,15 @@ document.addEventListener("DOMContentLoaded", event => {
 			this.style.display = "none";
 		});
 	}
+
+	// blog-grid
+	// job-offers-grid
+
+	// if (checkFlexGap()) {
+	// 	document.documentElement.classList.add("flexbox-gap");
+	//   } else {
+	// 	document.documentElement.classList.add("no-flexbox-gap");
+	//   }
 
 	document.addEventListener(
 		"wpcf7mailsent",

@@ -34,7 +34,7 @@ body.single {
 
 		@media screen and (min-width: 992px) {
 			width: 60%;
-			padding: 4em 7em;
+			padding: 4em 5em;
 		}
 
 		@media screen and (min-width: 1600px) {
@@ -538,7 +538,8 @@ body.single {
 
 body.single.single-raporty_espi_ebi,
 body.single.single-general_meetings,
-body.single-corporate_events {
+body.single-corporate_events,
+body.single-mails_to_shareholder {
 	.post-thumbnail {
 		height: 15rem;
 		width: 100%;

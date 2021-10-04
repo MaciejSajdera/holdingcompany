@@ -25,11 +25,21 @@ $documents = get_field('documents');
 				?>
 
 				<?php
-				the_content();
+				echo '
+				<p class="text--center">
+				'.get_the_content().'
+				</p>
+				';
+
+				wp_nav_menu(
+					array(
+						'theme_location' => 'investors-relationships-menu',
+						'menu_id'        => 'investors-relationships-menu-structure',
+						'container_class' => 'investors-relationships-menu-structure-container'
+					)
+				);
 				?>
 
-
-			
 			<?php
 
 				if ($documents) {

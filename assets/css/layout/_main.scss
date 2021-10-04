@@ -2,7 +2,11 @@ section {
 	padding: 1em 10% 3em 10%;
 
 	@media screen and (min-width: 992px) {
-		padding: 1em 18% 4em 18%;
+		padding: 1em 15% 4em 15%;
+	}
+
+	@media screen and (min-width: 1400px) {
+		padding: 4em 18% 4em 18%;
 	}
 }
 
@@ -10,6 +14,10 @@ section.blog-posts {
 	padding: 2em 5% 3em 5%;
 
 	@media screen and (min-width: 992px) {
+		padding: 4em 15% 4em 15%;
+	}
+
+	@media screen and (min-width: 1400px) {
 		padding: 4em 18% 4em 18%;
 	}
 }

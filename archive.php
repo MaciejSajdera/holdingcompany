@@ -33,20 +33,25 @@ get_header();
 				</header><!-- .entry-header -->
 
 			<section class="blog-posts">
-				<div class="blog-grid"> <?php
+				<div class="blog-grid blog-grid--news"> <?php
 
 				while (have_posts() ) :
 					// post_title();
 					the_post();
 					// $category = get_the_category();
 
-					echo '<a class="blog-post" href="'. get_permalink() .'">';
-					echo '<div class="blog-post__upper" style="background-image: url(' .get_the_post_thumbnail_url(). ')"></div>';
-					echo '<div class="blog-post__caption">';
-					echo '<span class="blog-post__date sub-text--grey">'. get_the_date() .'</span>';
-					echo '<h3 class="uppercase">' . get_the_title() . '</h3>';
-					echo '<p class="sub-text--grey read-more ">Dowiedz się więcej <span class="arrow-right"></span></p>';
-					echo '</div>';
+					echo '
+					<a class="blog-post" href="'. get_permalink() .'">
+						<div class="blog-post__upper" style="background-image: url(' .get_the_post_thumbnail_url(). ')"></div>
+						<div class="blog-post__caption">
+							<div>
+							<span class="blog-post__date sub-text--grey">'. get_the_date() .'</span>
+							<h3 class="uppercase">' . mb_strimwidth( html_entity_decode(get_the_title()), 0, 70, '...' ) . '</h3>
+							</div>
+							<p class="sub-text--grey read-more ">Dowiedz się więcej <span class="arrow-right"></span></p>
+						</div>
+					</a>
+					';
 					?>
 			
 					<?php echo '</a>';

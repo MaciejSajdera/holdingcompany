@@ -7,11 +7,9 @@
  * @package _s
  */
 $documents = get_field('documents');
-
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
 <div class="post-thumbnail subpage__header-image" style="background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-repeat: no-repeat; <?php
 
 	// if (!get_the_post_thumbnail_url()) {
@@ -21,8 +19,9 @@ $documents = get_field('documents');
 ?>">
 	<?php
 
-		if( has_term('', 'rodzaj_raportu') ){
-			echo '<h1 class="post-category">Raport '.wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) )[0].'</h1>';
+		$postType = get_post_type_object(get_post_type($post));
+		if ($postType) {
+			echo '<h1>'.$postType->labels->singular_name.'</h1>';
 		}
 
 	?>
@@ -35,7 +34,6 @@ $documents = get_field('documents');
 						// _s_posted_by();
 						echo '
 						<p class="sub-text--grey">Opublikowano: '.get_the_date().'</p>
-						<p class="sub-text--grey">Raport '.wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) )[0].' nr '.get_field('report_id').'</p>
 						';
 						?>
 					</div><!-- .entry-meta -->
@@ -97,7 +95,7 @@ $documents = get_field('documents');
 			}
 
 			?>
-
+			
 		</div>
 	<footer class="entry-footer">
 		<?php _s_entry_footer(); ?>

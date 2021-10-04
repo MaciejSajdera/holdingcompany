@@ -273,6 +273,7 @@ $mobile-menu-padding-top: 10rem;
 		a {
 			// padding: 1em;
 			position: relative;
+			white-space: nowrap;
 
 			&:before {
 				content: "";
@@ -418,8 +419,8 @@ $mobile-menu-padding-top: 10rem;
 	position: absolute;
 	background: #fff;
 	border-radius: 4px;
-	box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1),
-		0 15px 35px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 20px 35px rgba(50, 50, 93, 0.1),
+		0 15px 25px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s, opacity 0.1s, transform 0.2s;
 	transform-origin: 50% 0;
 	display: flex;

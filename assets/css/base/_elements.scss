@@ -109,6 +109,14 @@ dd {
 	margin: 0 1.5em 1.5em;
 }
 
+/* TEXT */
+
+.text {
+	&--center {
+		text-align: center;
+	}
+}
+
 /* TABLES */
 
 table {

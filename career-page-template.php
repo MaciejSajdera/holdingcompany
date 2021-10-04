@@ -113,7 +113,7 @@ get_header();
 
 											echo '<div class="blog-post__upper" style="background-image: url(' .get_the_post_thumbnail_url(). ')"></div>';
 											echo '<div class="blog-post__caption job-offer__caption">';
-											echo '<h3 class="uppercase">' . mb_strimwidth( get_the_title(), 0, 49, '...' ) . '</h3>';
+											echo '<h3 class="uppercase">' . mb_strimwidth( html_entity_decode(get_the_title()), 0, 49, '...' ) . '</h3>';
 											echo '<div class="job-offer__location"><span class="job-offer__location-icon"></span>'.get_field("job_city").'</div>';
 											// echo '<span class="blog-post__date sub-text--grey">'. get_the_date() .'</span>';
 											echo '<p class="sub-text--grey read-more ">Dowiedz się więcej <span class="arrow-right"></span></p>';

@@ -23,71 +23,75 @@ get_header();
 					
 			<div class="content__wrapper--motionless">
 
-				<h3 class="content__intro-text">Wyszukiwarka raportów</h3>
+				<h3 class="content__intro-text">Brak sprawozdań finansowych na moment obecny. Pierwszym okres obrachunkowy spółki będzie okres 05.11.2020 - 31.12.2021.</h3>
 
-				<div>
+				<!-- <h3 class="content__intro-text">Wyszukiwarka raportów</h3> -->
 
-				<?php echo do_shortcode( '[searchandfilter id="561"]' ); ?>
+				<!-- <div> -->
 
-				</div>
+				<!-- <?php echo do_shortcode( '[searchandfilter id="561"]' ); ?> -->
 
-				<div class="results">
+				<!-- </div>
+
+				<div class="results"> -->
 
 					<?php
 
-					if ( have_posts() ) : ?>
+					// if ( have_posts() ) :
+					
+					?>
 
 						<?php
-						/* Start the Loop */
-						while ( have_posts() ) :
-							the_post();
+					// 	/* Start the Loop */
+					// 	while ( have_posts() ) :
+					// 		the_post();
 
-							// var_dump(wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) ));
+					// 		// var_dump(wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) ));
 
-							echo '
-								<div class="single-result">
+					// 		echo '
+					// 			<div class="single-result">
 
-									<div class="single-result__content">
+					// 				<div class="single-result__content">
 
-										<div class="single-result__top">
+					// 					<div class="single-result__top">
 
-											<p class="sub-text--grey">Opublikowano: '.get_the_date().'</p>
-											<p class="sub-text--grey">Raport '.wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) )[0].' nr '.get_field('report_id').'</p>
+					// 						<p class="sub-text--grey">Opublikowano: '.get_the_date().'</p>
+					// 						<p class="sub-text--grey">Raport '.wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) )[0].' nr '.get_field('report_id').'</p>
 
-										</div>
+					// 					</div>
 
-										<div class="single-result__bottom">
+					// 					<div class="single-result__bottom">
 
-											<p><a href="'.get_the_permalink().'">'.get_the_title().'</a></p>
+					// 						<p><a href="'.get_the_permalink().'">'.get_the_title().'</a></p>
 
-										</div>
+					// 					</div>
 
-									</div>
+					// 				</div>
 
-									<a href="'.get_the_permalink().'"><p class="sub-text--grey read-more">Szczegóły<span class="arrow-right"></span></p></a>
+					// 				<a href="'.get_the_permalink().'"><p class="sub-text--grey read-more">Szczegóły<span class="arrow-right"></span></p></a>
 
 
-								</div>
-							';
+					// 			</div>
+					// 		';
 
 
 			
-							/*
-							* Include the Post-Type-specific template for the content.
-							* If you want to override this in a child theme, then include a file
-							* called content-___.php (where ___ is the Post Type name) and that will be used instead.
-							*/
-							// get_template_part( 'template-parts/content', get_post_type() );
+					// 		/*
+					// 		* Include the Post-Type-specific template for the content.
+					// 		* If you want to override this in a child theme, then include a file
+					// 		* called content-___.php (where ___ is the Post Type name) and that will be used instead.
+					// 		*/
+					// 		// get_template_part( 'template-parts/content', get_post_type() );
 			
-						endwhile;
+					// 	endwhile;
 			
-						the_posts_navigation();
+					// 	the_posts_navigation();
 			
-					else :
+					// else :
 			
-						get_template_part( 'template-parts/content', 'none' );
+					// 	get_template_part( 'template-parts/content', 'none' );
 			
-					endif;
+					// endif;
 
 					?>
 

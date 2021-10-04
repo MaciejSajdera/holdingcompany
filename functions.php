@@ -135,9 +135,9 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css', array(), '5.03');
+	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css', array(), '5.04');
 
-	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '5.01', true);
+	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '5.02', true);
 
 	wp_enqueue_script( 'blogAnimations', get_template_directory_uri() . '/dist/js/blogAnimations.js', array(), '5.01', true );
 
@@ -256,14 +256,18 @@ function my_loadmore_ajax_handler(){
 	   
 	while ( have_posts() ) { the_post();
 	 // your loop code here
-	 echo '<a class="blog-post" href="'. get_permalink() .'">';
-	 echo '<div class="blog-post__upper" style="background-image: url(' .get_the_post_thumbnail_url(). ')"></div>';
-	 echo '<div class="blog-post__caption">';
-	 echo '<span class="blog-post__date sub-text--grey">'. get_the_date() .'</span>';
-	 echo '<h3 class="uppercase">' . get_the_title() . '</h3>';
-	 echo '<p class="sub-text--grey read-more ">Dowiedz się więcej <span class="arrow-right"></span></p>';
-	 echo '</div>';
-	 echo '</a>';
+	 echo '
+	 <a class="blog-post" href="'. get_permalink() .'">
+		 <div class="blog-post__upper" style="background-image: url(' .get_the_post_thumbnail_url(). ')"></div>
+		 <div class="blog-post__caption">
+			 <div>
+			 <span class="blog-post__date sub-text--grey">'. get_the_date() .'</span>
+			 <h3 class="uppercase">' . mb_strimwidth( html_entity_decode(get_the_title()), 0, 70, '...' ) . '</h3>
+			 </div>
+			 <p class="sub-text--grey read-more ">Dowiedz się więcej <span class="arrow-right"></span></p>
+		 </div>
+	 </a>
+	 ';
    }
    die();
 }

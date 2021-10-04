@@ -39,11 +39,14 @@ $contact_data_for_investors_3 = get_field("contact_data_for_investors_3");
 					echo
 				   '<h3>' .$contact_data_for_investors_1['contact_data_header']. '</h3>
 					<p>' .$contact_data_for_investors_1['contact_name']. '</p>
+					<p>' .$contact_data_for_investors_1['contact_krs']. '</p>
+					<p>' .$contact_data_for_investors_1['contact_nip']. '</p>
+					<p>' .$contact_data_for_investors_1['contact_regon']. '</p>
 					<p>' .$contact_data_for_investors_1['contact_address']. '</p>
+					<p>' .$contact_data_for_investors_1['contact_court']. '</p>
+					<p>' .$contact_data_for_investors_1['contact_share_capital']. '</p>
 					<p><a href="tel:' .$contact_data_for_investors_1['contact_phone']. '">' .$contact_data_for_investors_1['contact_phone']. '</a></p>
 					<p><a href="mailto:' .$contact_data_for_investors_1['contact_mail']. '">' .$contact_data_for_investors_1['contact_mail']. '</a></p>
-					<p>' .$contact_data_for_investors_1['contact_regon']. '</p>
-					<p>' .$contact_data_for_investors_1['contact_krs']. '</p>
 					<p>' .$contact_data_for_investors_1['contact_bank_account']. '</p>
 					';
 					 ?>

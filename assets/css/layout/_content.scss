@@ -130,12 +130,12 @@
 	background: $color__background-body;
 
 	@media screen and (min-width: 992px) {
-		padding: 3em 5em;
+		padding: 3em 3em;
 	}
 
 	@media screen and (min-width: 1400px) {
 		width: 60%;
-		padding: 4em 7em;
+		padding: 4em 5em;
 	}
 
 	@media screen and (min-width: 1600px) {
@@ -266,7 +266,7 @@
 
 		@media screen and (min-width: 1400px) {
 			width: 90%;
-			padding: 4em 7em;
+			padding: 4em 5em;
 		}
 
 		@media screen and (min-width: 1600px) {
@@ -480,25 +480,123 @@ $secondary-color: #1d1f20;
 	}
 }
 
+/* Relacje Inwestorskie */
+
+.investors-relationships-menu-structure-container {
+	// ul#investors-relationships-menu-structure
+	margin-top: 2rem;
+
+	ul {
+		margin: 0;
+		list-style: none;
+	}
+
+	a {
+		position: relative;
+
+		&:before {
+			content: "";
+			position: absolute;
+			height: 2px;
+			width: 0%;
+			background: black;
+			left: 0;
+			bottom: -0.25em;
+			transition: all 0.3s ease-in-out;
+		}
+
+		&:hover {
+			@media screen and (max-width: 992px) {
+				font-weight: 600;
+			}
+
+			@media screen and (min-width: 992px) {
+				&:before {
+					content: "";
+					position: absolute;
+					height: 2px;
+					width: 100%;
+					background: black;
+					left: 0;
+					bottom: -0.25em;
+				}
+			}
+		}
+	}
+
+	#investors-relationships-menu-structure {
+		padding: 0;
+		text-align: center;
+
+		& > li {
+			margin-bottom: 2rem;
+
+			& > a {
+				font-weight: 700;
+				@include fluid-type($min_width, $max_width, 20px, 22px);
+			}
+		}
+	}
+
+	.sub-menu {
+		margin-top: 1rem;
+		padding-left: 1em;
+
+		li {
+			padding: 0.45em 0;
+
+			a {
+				@include fluid-type($min_width, $max_width, 16px, 18px);
+			}
+		}
+	}
+
+	// .menu-parent-link > a {
+
+	// }
+}
+
 /* MANAGEMENT */
+
+.page-template-management-page-template {
+	h3 {
+		text-align: center;
+	}
+}
 
 .management {
 	&__container {
+		flex-wrap: wrap;
+		margin-top: 10rem;
+
 		@media screen and (min-width: 992px) {
 			display: flex;
 			column-gap: 4rem;
+			justify-content: space-between;
+		}
+
+		&--top {
+			margin-top: 5rem;
+			margin-bottom: 5rem;
+
+			.person {
+				margin-bottom: 0;
+			}
 		}
 	}
 }
 
 .person {
-	padding: 2em;
+	padding: 0 2em 1em;
 	border: 2px solid black;
-	margin: 15rem 0;
-	padding-top: 0;
+	flex: 1 1 28%;
+	margin-bottom: 10rem;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
 
-	&:first-of-type {
-		margin-top: 10rem;
+	@media screen and (min-width: 992px) {
+		flex: 1 1 28%;
 	}
 
 	&__image-holder {
@@ -506,6 +604,12 @@ $secondary-color: #1d1f20;
 		justify-content: center;
 		align-items: center;
 		transform: translateY(-50%);
+
+		img {
+			object-fit: cover;
+			width: 10rem;
+			height: 10rem;
+		}
 	}
 
 	&__header {
@@ -515,6 +619,7 @@ $secondary-color: #1d1f20;
 	&__name {
 		text-align: center;
 		font-weight: 700;
+		@include fluid-type($min_width, $max_width, 18px, 20px);
 
 		p {
 			margin: 0;
@@ -522,11 +627,19 @@ $secondary-color: #1d1f20;
 	}
 
 	&__role {
-		text-align: center;
+		p {
+			text-align: center;
+			font-style: italic;
+			margin-top: 0.5em;
+			@include fluid-type($min_width, $max_width, 13px, 15px);
+		}
 	}
 
-	@media screen and (min-width: 992px) {
-		margin: 10rem 0;
+	&__description {
+		transform: translateY(-2rem);
+		p {
+			margin: 0;
+		}
 	}
 }
 

@@ -6,6 +6,8 @@
  */
 $management = get_field("management");
 
+
+$management_person_top = $management['management_person_top'];
 $management_person = $management['management_person'];
 
 get_header();
@@ -25,16 +27,48 @@ get_header();
 						if ( function_exists('yoast_breadcrumb') ) {
 							yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
 						}
+
+						echo'<h2 class="content__intro-text">'.$management['header_1'].'</h2>';
 					?>
 					
-					<h2 class="content__intro-text">Zarząd</h2>
-
-					<div class="management management__container">
-
 					<?php
 
-						if ($management_person) {
+						if ($management_person_top) {
 
+							echo'
+
+							<div class="management management__container management__container--top">
+								<div class="management__person person">
+
+									<div class="person__image-holder">
+										<img src="'.$management_person_top['image']['url'].'" alt="'.$management_person_top['image']['alt'].'">
+									</div>
+
+									<div class="person__header">
+										<div class="person__name">
+											<p>'.$management_person_top['name'].'</p>
+										</div>
+
+										<div class="person__role">
+											<p>'.$management_person_top['role'].'</p>
+										</div>
+									</div>
+
+									<div class="person__description">
+										<p>'.$management_person_top['description'].'</p>
+									</div>
+						
+								</div>
+							</div>
+							';
+						}
+
+						echo '<h3>'.$management['header_2'].'</h3>';
+
+						if ($management_person) {
+							
+							echo '<div class="management management__container">';
+					
 							foreach($management_person as $person) {
 
 								echo '<div class="management__person person">

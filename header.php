@@ -83,7 +83,7 @@ global $post;
 
 						if (is_page(421) ||
 						$root_parent_page_id == 421 || 
-						is_singular( array( 'dok_korporacyjne', 'raporty_espi_ebi', 'corporate_events', 'general_meetings', 'komunikaty_prasowe') ) ||
+						is_singular( array( 'dok_korporacyjne', 'raporty_espi_ebi', 'corporate_events', 'general_meetings', 'komunikaty_prasowe', 'mails_to_shareholder',) ) ||
 						is_post_type_archive('dok_korporacyjne') ||
 						is_post_type_archive('raporty_espi_ebi') ||
 						is_tax('rodzaj_raportu') ||
@@ -91,7 +91,9 @@ global $post;
 						is_tax('event_year') ||
 						is_post_type_archive('general_meetings') ||
 						is_tax('event_year_general_meeting')  ||
-						is_post_type_archive('komunikaty_prasowe')
+						is_post_type_archive('komunikaty_prasowe') ||
+						is_post_type_archive('mails_to_shareholder')
+
 						) {
 
 							wp_nav_menu(
