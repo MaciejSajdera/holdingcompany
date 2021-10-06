@@ -583,12 +583,18 @@ $secondary-color: #1d1f20;
 				margin-bottom: 0;
 			}
 		}
+
+		// &--bottom {
+		// 	.person {
+		// 		max-width: 28%;
+		// 	}
+		// }
 	}
 }
 
 .person {
 	padding: 0 2em 1em;
-	border: 2px solid black;
+	border: 2px solid $color__border-media;
 	flex: 1 1 28%;
 	margin-bottom: 10rem;
 	display: flex;
@@ -609,6 +615,8 @@ $secondary-color: #1d1f20;
 			object-fit: cover;
 			width: 10rem;
 			height: 10rem;
+			border-radius: 50%;
+			overflow: hidden;
 		}
 	}
 
@@ -694,14 +702,6 @@ $secondary-color: #1d1f20;
 		text-align: center;
 
 		@include fluid-type($min_width, $max_width, 10px, 18px);
-
-		// @media screen and (max-width: 600px) {
-		// 	font-size: 11px;
-		// }
-
-		// @media screen and (max-width: 360px) {
-		// 	font-size: 10px;
-		// }
 	}
 
 	.name p {
