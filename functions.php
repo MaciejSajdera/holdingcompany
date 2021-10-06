@@ -135,7 +135,7 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css', array(), '5.09');
+	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css', array(), '5.11');
 
 	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '5.06', true);
 

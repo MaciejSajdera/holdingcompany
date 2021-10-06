@@ -67,7 +67,7 @@ get_header();
 
 						if ($management_person) {
 							
-							echo '<div class="management management__container">';
+							echo '<div class="management management__container  management__container--bottom">';
 					
 							foreach($management_person as $person) {
 
