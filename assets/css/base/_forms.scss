@@ -50,12 +50,12 @@ textarea {
 	}
 }
 
-.subpage {
+.wpcf7 {
 	form {
 		padding: 0;
 
 		@media screen and (min-width: 992px) {
-			padding: 0 2em;
+			// padding: 0 2em;
 		}
 
 		p {
@@ -72,11 +72,16 @@ textarea {
 			display: block;
 			z-index: 1;
 			right: 10px;
-			top: 10px;
+			top: 5px;
 			height: 100%;
 			/* width: 100%; */
 			/* border: 1px solid red; */
-			font-size: 13px;
+			font-size: 11px;
+
+			@media screen and (min-width: 992px) {
+				font-size: 12px;
+				top: 10px;
+			}
 		}
 
 		.wpcf7-response-output {
@@ -90,10 +95,13 @@ textarea {
 			display: none;
 		}
 
-		input,
+		input[type="text"],
+		input[type="email"],
+		input[type="file"],
+		input[type="submit"],
 		textarea,
 		.upload-file-label {
-			padding: 1.25em 1em;
+			padding: 1.75em 1em 1.25em;
 			outline: none;
 			border-radius: 0;
 			width: 100%;
@@ -104,9 +112,21 @@ textarea {
 			resize: none;
 			transition: all 0.3s ease-in-out;
 
+			@media screen and (min-width: 992px) {
+				padding: 1.25em 1em;
+			}
+
 			&:hover {
 				background: $color__lightest-grey;
 			}
+		}
+
+		input[type="submit"] {
+			border: 1px solid black;
+		}
+
+		textarea {
+			border-bottom: none;
 		}
 
 		.wpcf7-submit {
@@ -267,9 +287,437 @@ textarea {
 }
 
 .job-offer__form-section {
-	margin-bottom: 5em;
+	margin: 5em 0;
 }
 
 .grecaptcha-badge {
 	display: none !important;
+}
+
+.wpcf7-acceptance {
+	margin: 2rem 0;
+	display: block;
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		position: relative;
+		cursor: pointer;
+		padding: 0;
+		margin-right: 20px;
+		width: 20px;
+		height: 20px;
+	}
+
+	input[type="checkbox"]:before,
+	input[type="radio"]:before {
+		content: "";
+		margin-right: 10px;
+		display: inline-block;
+		margin-top: 0px;
+		width: 25px;
+		height: 25px;
+		background: $color__background-body;
+		border: 1px solid #ccc;
+	}
+
+	input[type="checkbox"]:checked:before,
+	input[type="radio"]:checked:before {
+		background: black;
+		border-color: $color__background-body;
+	}
+	input[type="checkbox"]:disabled,
+	input[type="radio"]:disabled {
+		color: black;
+		cursor: auto;
+	}
+	input[type="checkbox"]:disabled:before,
+	input[type="radio"]:disabled:before {
+		box-shadow: none;
+		background: black;
+	}
+	input[type="checkbox"]:checked:after,
+	input[type="radio"]:checked:after {
+		content: "";
+		position: absolute;
+		left: 7px;
+		top: 11px;
+
+		background: $color__background-body;
+		width: 3px;
+		height: 3px;
+		box-shadow: 2px 0 0 $color__background-body, 4px 0 0 $color__background-body,
+			4px -2px 0 $color__background-body, 4px -4px 0 $color__background-body,
+			4px -6px 0 $color__background-body, 4px -8px 0 $color__background-body;
+		transform: rotate(45deg);
+	}
+
+	label {
+		text-align: justify;
+
+		@media screen and (min-width: 992px) {
+			display: flex !important;
+		}
+	}
+
+	.wpcf7-list-item-label {
+		font-size: 12px;
+		line-height: 1.25;
+
+		a {
+			text-decoration: underline;
+		}
+	}
+}
+
+.acceptance {
+	&__cv {
+		margin-right: 1rem;
+		margin-top: 5px;
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.searchandfilter {
+	input {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	ul {
+		display: flex;
+		flex-flow: column;
+		margin: 0;
+		padding: 0;
+		justify-content: space-between;
+		row-gap: 3rem;
+		align-items: flex-end;
+
+		@media screen and (min-width: 992px) {
+			flex-flow: row;
+			column-gap: 4rem;
+		}
+	}
+
+	li {
+		flex: 1 1 0px;
+		display: flex;
+		// flex-flow: column;
+		// align-self: flex-end;
+		width: 100%;
+		position: relative;
+		padding: 0 !important;
+
+		@include fluid-type($min_width, $max_width, 14px, 16px);
+
+		input {
+			@include fluid-type($min_width, $max_width, 14px, 16px);
+		}
+	}
+
+	// .select2-container--default .select2-selection--single {
+	// 	border-bottom: 1px solid $color__border-input;
+	// 	border-radius: 0;
+	// 	padding-bottom: 0.5em;
+	// 	display: block;
+	// }
+
+	.select2-selection__arrow {
+		b {
+			display: none;
+		}
+	}
+
+	// &-selection {
+	// 	&__arrow {
+	// 		b {
+	// 			display: none;
+	// 		}
+	// 	}
+
+	// 	&__choice {
+	// 		display: none !important;
+	// 	}
+
+	.select2-container {
+		width: 100% !important;
+	}
+
+	.select2-selection--multiple,
+	.select2-selection--single,
+	.sf-field-sort_order select,
+	.sf-field-search,
+	.sf-field-submit {
+		width: 100%;
+		cursor: pointer;
+		height: auto;
+		padding: 0.5em 0 !important;
+		line-height: 0 !important;
+		font-size: 1rem;
+		min-height: 52px;
+		// min-width: 220px;
+		border: 0;
+		border-bottom: 1px solid $color__border-input;
+		border-radius: 0;
+		background: transparent !important;
+		overflow: hidden;
+
+		display: flex;
+		justify-content: space-between;
+		// align-items: center;
+		align-items: flex-end;
+
+		// @media screen and (max-width: 992px) {
+		// 	@include fluid-type($min_width, $max_width, 14px, 16px);
+		// }
+
+		.select2-selection__rendered {
+			padding: 0;
+			display: flex !important;
+			flex-flow: column;
+			line-height: 1.5 !important;
+		}
+	}
+
+	.select2-selection--single {
+		&:after {
+			content: url(../dist/svg/arrow_down.svg);
+			align-self: flex-end;
+		}
+	}
+
+	.sf-field-search {
+		label {
+			width: 100%;
+		}
+
+		input {
+			padding: 0 !important;
+			border: 0 !important;
+			background: none !important;
+		}
+	}
+
+	// .sf-field-sort_order label {
+	// 	position: relative;
+	// 	width: 100%;
+
+	// 	select {
+	// 		width: 100%;
+	// 		// position: relative;
+	// 		// -webkit-appearance: none;
+	// 		// -moz-appearance: none;
+	// 		// text-indent: 1px;
+	// 		// text-overflow: "";
+	// 		// appearance: none;
+
+	// 		// -o-appearance: none;
+	// 		// -ms-appearance: none;
+	// 		// -webkit-appearance: none;
+	// 		// -moz-appearance: none;
+	// 		// appearance: none;
+	// 	}
+
+	// 	/* For IE10 */
+	// 	// select::-ms-expand {
+	// 	// 	display: none;
+	// 	// }
+
+	// 	&:after {
+	// 		content: url(../dist/svg/arrow_down.svg);
+	// 		align-self: flex-end;
+	// 		position: absolute;
+	// 		top: 28%;
+	// 		right: 5px;
+	// 		background: white;
+	// 		width: 25%;
+	// 		display: flex;
+	// 		justify-content: center;
+	// 	}
+	// }
+
+	.sf-field-submit {
+		padding: 0 !important;
+		border: 0;
+		// @media screen and (max-width: 992px) {
+		// 	padding: 1em 2em;
+		// 	@include fluid-type($min_width, $max_width, 14px, 16px);
+		// }
+
+		input {
+			cursor: pointer;
+			width: 100%;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: black !important;
+			color: $color__white_text !important;
+			padding: 1em 1.5em;
+			text-transform: uppercase;
+			border: 1px solid transparent;
+			// @include fluid-type($min_width, $max_width, 10px, 14px);
+			transition: all 0.3s ease-in-out;
+
+			&:hover {
+				background-color: $color__white_text !important;
+				color: black !important;
+				border: 1px solid black !important;
+
+				// input {
+				// 	background-color: $color__white_text !important;
+				// 	color: black !important;
+				// }
+
+				// &:before {
+				// 	filter: invert(1);
+				// }
+			}
+		}
+
+		// &:before {
+		// 	content: url(../dist/svg/zoom.svg);
+		// 	width: 1em;
+		// 	height: 1em;
+		// 	margin-right: 0.75em;
+		// 	transition: inherit !important;
+		// }
+
+		// &:hover {
+		// 	background-color: $color__white_text !important;
+		// 	color: black !important;
+		// 	border: 1px solid black !important;
+
+		// 	input {
+		// 		background-color: $color__white_text !important;
+		// 		color: black !important;
+		// 	}
+
+		// 	// &:before {
+		// 	// 	filter: invert(1);
+		// 	// }
+		// }
+	}
+
+	.sf-field-submit input {
+		// width: 100%;
+		// text-align: center;
+		// display: flex;
+		// justify-content: center;
+		// background-color: black !important;
+		// color: $color__white_text !important;
+		// padding: 1em 1.5em;
+		// text-transform: uppercase;
+		// border: 1px solid transparent;
+		// @include fluid-type($min_width, $max_width, 10px, 14px);
+		// transition: all 0.3s ease-in-out;
+
+		// @media screen and (max-width: 992px) {
+		// 	padding: 1em 2em;
+		// 	@include fluid-type($min_width, $max_width, 14px, 16px);
+		// }
+	}
+
+	//Default options on mobile
+
+	@media screen and (max-width: 992px) {
+		[data-sf-field-input-type="multiselect"] .sf-input-select,
+		[data-sf-field-input-type="select"] .sf-input-select {
+			height: 100% !important;
+			width: 100% !important;
+			clip: unset !important;
+			clip-path: unset !important;
+			z-index: 1;
+			opacity: 0;
+
+			label {
+				position: relative;
+			}
+
+			.select2-selection {
+				pointer-events: none;
+			}
+
+			.select2-search__field {
+				z-index: 1;
+			}
+		}
+
+		// exceptions
+
+		[name="_sf_sort_order[]"] {
+			opacity: 1 !important;
+		}
+	}
+}
+
+.select2-selection--single[aria-expanded="true"] {
+	// box-shadow: $box-shadow_standard;
+}
+
+.select2-dropdown--below {
+	border: 0;
+	// box-shadow: $box-shadow_standard;
+	box-shadow: 0 0px 15px 5px rgb(0 0 0 / 10%), 0 0px 6px 0px rgb(0 0 0 / 5%);
+}
+
+.select2-search--dropdown {
+	padding: 0;
+	.select2-search__field {
+		display: none;
+	}
+}
+
+.results {
+	margin-top: 4rem;
+}
+
+.single-result {
+	padding: 2em 0;
+	border-bottom: 1px solid $color__border-input;
+	display: flex;
+	flex-flow: column;
+
+	justify-content: space-between;
+
+	@media screen and (min-width: 992px) {
+		flex-flow: row;
+		align-items: flex-end;
+		padding: 3em 0;
+	}
+
+	&__content {
+		@media screen and (min-width: 992px) {
+			max-width: 75%;
+		}
+	}
+
+	&__top {
+		p {
+			margin: 0;
+			text-transform: unset;
+			margin-bottom: 1em;
+			@include fluid-type($min_width, $max_width, 14px, 16px);
+		}
+	}
+
+	&__bottom {
+		p {
+			font-weight: 700;
+			@include fluid-type($min_width, $max_width, 20px, 22px);
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.read-more {
+		@media screen and (max-width: 992px) {
+			margin-top: 2rem;
+		}
+
+		margin-bottom: 0;
+	}
 }

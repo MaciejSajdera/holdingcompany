@@ -51,4 +51,9 @@ $break__large: 64.063em;
 $post_up_distance--mobile: -1.5rem;
 $post_up_distance--desktop: -6.5rem;
 
-$header_height: 5rem;
+$header_height_desktop: 9rem;
+$header_height_mobile: 5rem;
+
+/* TRANSITIONS */
+
+$transition_regular: all 0.3s ease-in-out;

@@ -1,22 +1,26 @@
 body.single {
-
 	.post-thumbnail {
-		margin: 4em auto 0 auto;
+		margin: auto;
 		background-size: cover;
 		background-repeat: no-repeat;
 		height: 35em;
-		width: 50%;
 		background-position: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-		@media screen and (max-width: 992px) {
+		@media screen and (max-width: 1400px) {
 			margin: 0em auto 0;
 			height: 15em;
 			width: 100%;
 		}
+
+		@media screen and (min-width: 1400px) {
+			width: 50%;
+		}
 	}
 
 	.post-navigation {
-		width: 40%;
 		margin: auto;
 		display: flex;
 		flex-flow: row;
@@ -26,6 +30,15 @@ body.single {
 
 		@media screen and (max-width: 992px) {
 			width: 70%;
+		}
+
+		@media screen and (min-width: 992px) {
+			width: 60%;
+			padding: 4em 5em;
+		}
+
+		@media screen and (min-width: 1600px) {
+			width: 50%;
 		}
 
 		div {
@@ -74,6 +87,7 @@ body.single {
 			display: flex;
 			flex-flow: row;
 			align-items: center;
+			margin-bottom: 1rem;
 		}
 
 		&__prev,
@@ -136,7 +150,7 @@ body.single {
 		@media screen and (min-width: 1400px) {
 			@keyframes navWide {
 				0% {
-					width: 40%;
+					width: 50%;
 				}
 
 				75% {
@@ -187,7 +201,7 @@ body.single {
 	}
 
 	.content__wrapper {
-		padding: 1em 1em;
+		padding: 1em 0em;
 
 		@media screen and (min-width: 992px) {
 			padding: 0;
@@ -374,8 +388,9 @@ body.single {
 
 	.job-offer__tasks_container,
 	.job-offer__requirements_container,
-	.job-offer__benefits_container {
-		padding: 8px 12px;
+	.job-offer__benefits_container,
+	.job-offer__content_container {
+		padding: 8px 0;
 		// margin-top: 1em;
 		// box-shadow: 0 1px 4px 0 rgb(0 0 0 / 20%);
 
@@ -398,6 +413,7 @@ body.single {
 
 			p {
 				margin: auto 0;
+				text-align: initial;
 			}
 		}
 
@@ -406,6 +422,7 @@ body.single {
 			height: 20px;
 			display: block;
 			margin-right: 1.5em;
+			margin-top: 2px;
 			min-width: 20px;
 			background: url(../dist/svg/task.svg);
 			background-size: contain;
@@ -420,14 +437,23 @@ body.single {
 
 		li {
 			flex-flow: column;
-			justify-content: center;
+			// justify-content: center;
 			align-items: center;
 			flex: 33%;
-			min-height: 250px;
+			// min-height: 250px;
 			padding: 1em;
-			margin-bottom: 0;
+			margin-bottom: 0 !important;
 			border-right: 1px solid $color__border-media;
 			border-bottom: 1px solid $color__border-media;
+
+			.benefit-wrapper {
+				// height: 100%;
+				display: flex;
+				flex-flow: column;
+				// justify-content: center;
+				align-items: center;
+				padding: 3rem 1rem;
+			}
 
 			@media screen and (max-width: 414px) {
 				flex: 100%;
@@ -443,8 +469,14 @@ body.single {
 			height: 50px;
 			width: 50px;
 			background-size: contain;
+			background-repeat: no-repeat;
 			margin-bottom: 1em;
 		}
+	}
+
+	.job-offer__content_container {
+		margin-top: 2.5rem;
+		text-align: justify;
 	}
 
 	.job-offer__form-section {
@@ -500,6 +532,48 @@ body.single {
 					width: 60%;
 				}
 			}
+		}
+	}
+}
+
+body.single.single-raporty_espi_ebi,
+body.single.single-general_meetings,
+body.single-corporate_events,
+body.single-mails_to_shareholder {
+	.post-thumbnail {
+		height: 15rem;
+		width: 100%;
+		@media screen and (min-width: 992px) {
+			height: 20rem;
+		}
+
+		p {
+			margin: 0;
+			padding-bottom: -$post_up_distance--mobile;
+
+			@media screen and (min-width: 992px) {
+				padding-bottom: -$post_up_distance--desktop;
+			}
+		}
+	}
+
+	.entry-meta {
+		p {
+			text-transform: unset;
+		}
+	}
+
+	.entry-meta,
+	.entry-title {
+		text-align: left;
+	}
+
+	.document-file-container {
+		p {
+			font-weight: 700;
+			border-bottom: 2px solid black;
+			padding-bottom: 1em;
+			@include fluid-type($min_width, $max_width, 16px, 18px);
 		}
 	}
 }

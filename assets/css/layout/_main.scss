@@ -2,7 +2,11 @@ section {
 	padding: 1em 10% 3em 10%;
 
 	@media screen and (min-width: 992px) {
-		padding: 1em 18% 4em 18%;
+		padding: 1em 15% 4em 15%;
+	}
+
+	@media screen and (min-width: 1400px) {
+		padding: 4em 18% 4em 18%;
 	}
 }
 
@@ -10,12 +14,17 @@ section.blog-posts {
 	padding: 2em 5% 3em 5%;
 
 	@media screen and (min-width: 992px) {
+		padding: 4em 15% 4em 15%;
+	}
+
+	@media screen and (min-width: 1400px) {
 		padding: 4em 18% 4em 18%;
 	}
 }
 
 #my-page-header {
 	background: $color__semiblack;
+	background-position: 20%;
 	height: 60vh;
 	position: relative;
 	border-bottom: none;
@@ -29,8 +38,8 @@ section.blog-posts {
 		height: calc(
 			(var(--vh, 1vh) * 100 - 5rem)
 		); // height depends on browsers panel on the top
-
-		margin-top: $header_height;
+		background-position: unset;
+		margin-top: 5rem;
 	}
 
 	// @media screen and (min-width: 992px) {

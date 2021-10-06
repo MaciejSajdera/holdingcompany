@@ -1,24 +1,12 @@
 <?php
-/**
- * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package _s
+/*
+ * Template Name: Investors Relationships Page Template
+ * description: >-
+  Page template without sidebar
  */
 
 get_header();
-
 $documents = get_field('documents');
-
-$company = get_field('company');
-$capital_market_institutions = get_field('capital_market_institutions');
-
 ?>
 
 	<div id="primary" class="content-area">
@@ -36,12 +24,22 @@ $capital_market_institutions = get_field('capital_market_institutions');
 					}
 				?>
 
-				<div class="subpage__content">
-					<?php
-						the_content();
-					?>
-				</div>
-			
+				<?php
+				echo '
+				<p class="text--center">
+				'.get_the_content().'
+				</p>
+				';
+
+				wp_nav_menu(
+					array(
+						'theme_location' => 'investors-relationships-menu',
+						'menu_id'        => 'investors-relationships-menu-structure',
+						'container_class' => 'investors-relationships-menu-structure-container'
+					)
+				);
+				?>
+
 			<?php
 
 				if ($documents) {
@@ -99,18 +97,8 @@ $capital_market_institutions = get_field('capital_market_institutions');
 
 			</div>
 
-		 <?php
-		// while ( have_posts() ) :
-		// 	the_post();
-
-		// 	get_template_part( 'template-parts/content', 'page' );
-
-
-		// endwhile; // End of the loop.
-		?> 
-
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php
-get_footer();
+get_footer('home');

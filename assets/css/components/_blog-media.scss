@@ -54,20 +54,23 @@
 
 .blog-post {
 	position: relative;
-	height: 14em;
+	height: 15rem;
 	width: 100%;
 	background-size: cover;
 	display: flex;
-
 	text-align: center;
 	text-decoration: none;
 	border: 1px solid $color__border-input;
-	opacity: 0;
 	transition: all 0.4s ease-in;
 	margin: auto;
 
 	@media screen and (min-width: 992px) {
-		height: 30em;
+		height: 28rem;
+		flex-flow: column;
+	}
+
+	@media screen and (min-width: 1200px) {
+		height: 25rem;
 		flex-flow: column;
 	}
 
@@ -78,19 +81,19 @@
 	&__upper {
 		width: 50%;
 		height: 100%;
+		min-height: 12.5rem;
 		margin-bottom: 0 !important;
 		background-size: cover;
 		background-position: center;
 
 		@media screen and (min-width: 992px) {
-			height: 50%;
 			width: 100%;
 		}
 	}
 
 	&__date {
 		width: 100%;
-		height: 10%;
+		// height: 10%;
 		display: block;
 		text-align: left;
 
@@ -120,14 +123,12 @@
 		}
 
 		@media screen and (min-width: 992px) {
-			height: 50%;
 			width: 100%;
 		}
 
 		h3 {
 			text-align: left;
 			overflow: hidden;
-			height: 60%;
 			width: 100%;
 			color: $color__text-screen;
 			@include fluid-type($min_width, $max_width, 14px, 16px);
@@ -144,6 +145,38 @@
 			color: $color__text-screen;
 		}
 	}
+}
+
+.blog-grid--news {
+	.blog-post {
+		opacity: 0;
+	}
+}
+
+.blog-grid--mails {
+	margin-top: 6rem;
+
+	.blog-post {
+		height: 20rem;
+
+		&__caption {
+			height: 100%;
+			text-align: left;
+		}
+
+		&__date {
+			height: auto;
+		}
+
+		h3 {
+			margin-top: 0;
+			height: auto;
+		}
+	}
+}
+
+.blog-grid--press-mails {
+	margin-top: 6rem;
 }
 
 .media-post {
@@ -276,16 +309,22 @@ section.media-posts {
 }
 
 .job-offers-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 2em;
 	margin: 3em 0;
-	grid-row-gap: 5em;
+
+	display: flex;
+	flex-flow: column;
 
 	@media screen and (max-width: 992px) {
-		grid-template-columns: 1fr;
-		grid-template-rows: 1fr 1fr 1fr;
+		// grid-template-columns: 1fr;
+		// grid-template-rows: 1fr 1fr 1fr;
 		grid-row-gap: 2em;
+	}
+
+	@media screen and (min-width: 992px) {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-row-gap: 5em;
 	}
 
 	.text-warning {

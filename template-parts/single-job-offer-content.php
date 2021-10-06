@@ -36,13 +36,7 @@ $job_offer_traits = get_field("job_offer_traits");
 					<?php endif; ?>
 				</header><!-- .entry-header -->
 
-					<div class="subpage job-offer__form-section">
 
-						<h3 class="content__intro-text"><?php echo get_field("form_header", 276) ?></h3>
-
-						<?php echo do_shortcode('[contact-form-7 id="278" title="Prześlij swoje CV"]'); ?>
-
-					</div>
 
 					<ul class="job-offer__traits">
 						<li class="job-offer__traits__location">
@@ -131,11 +125,13 @@ $job_offer_traits = get_field("job_offer_traits");
 
 				</div>
 
-				<div class="job-offer__benefits_container">
+				<div class="job-offer__requirements_container">
+
+							
 
 					<h3>Oferujemy</h3>
 
-					<ul class="job-offer__benefits">
+					<ul>
 						<?php 
 							$rows = get_field('job_benefits');
 							if( $rows ) {
@@ -143,8 +139,8 @@ $job_offer_traits = get_field("job_offer_traits");
 									$task = $row['benefit'];
 
 									echo '<li>';
-										echo '<span class="job-offer__benefits--icon" style="background-image: url('. $task['benefit_image'] .')"></span>';
-										echo '<p>'. $task['benefit_text'] .'</p>';
+											echo '<span class="list-bullet"></span>';
+											echo '<p>'. $task['benefit_text'] .'</p>';
 									echo '</li>';
 								}
 
@@ -152,8 +148,41 @@ $job_offer_traits = get_field("job_offer_traits");
 						?>
 					</ul>
 
+					<!-- <ul class="job-offer__benefits">
+						<?php 
+							$rows = get_field('job_benefits');
+							if( $rows ) {
+								foreach( $rows as $row ) {
+									$task = $row['benefit'];
+
+									echo '<li>';
+										echo '<div class="benefit-wrapper">';
+											echo '<span class="job-offer__benefits--icon" style="background-image: url('. $task['benefit_image'] .')"></span>';
+											echo '<p>'. $task['benefit_text'] .'</p>';
+										echo '</div>';
+									echo '</li>';
+								}
+
+							}
+						?>
+					</ul> -->
+
 				</div>
 
+				<div class="job-offer__content_container the_content_field">
+					<?php
+						the_content();
+					?>
+				</div>
+
+
+				<div class="subpage job-offer__form-section">
+
+					<h3 class="content__intro-text"><?php echo get_field("form_header_single_offer", 296) ?></h3>
+
+					<?php echo do_shortcode('[contact-form-7 id="278" title="Prześlij swoje CV"]'); ?>
+
+				</div>
 
 
 

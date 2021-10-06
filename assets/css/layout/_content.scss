@@ -22,6 +22,18 @@
 .entry-content,
 .entry-summary {
 	margin: 1.5em 0 0;
+	text-align: justify;
+}
+
+.entry-content a {
+	word-break: break-all;
+}
+
+::selection {
+	background: rgba(0, 0, 0, 0.1); /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+	background: rgba(0, 0, 0, 0.1); /* Gecko Browsers */
 }
 
 .page-links {
@@ -46,29 +58,84 @@
 	display: block;
 }
 
+.page-template-default,
+.page-template-shareholding-structure-page-template,
+.page-template-management-page-template {
+	.subpage__content {
+		@media screen and (max-width: 992px) {
+			margin-top: 0;
+		}
+	}
+}
+
 .page-template-home-template {
 	.section-header {
 		text-align: center;
 		@include fluid-type($min_width, $max_width, 18px, 22px);
-		margin-bottom: 1.5em;
+		margin-bottom: 2.5em;
 	}
 }
 
-.content__wrapper {
+.page-template-privacy-policy-page-template {
+	.site-main {
+		margin-top: 4rem;
+	}
+}
+
+.page-template-contact-investors-page-template {
+	.subpage__content {
+		margin: 0 auto 4rem;
+		text-align: center;
+		max-width: 75%;
+	}
+
+	.contact-info {
+		margin-top: 6rem;
+
+		h3 {
+			min-height: 4rem;
+			margin-bottom: 1rem;
+			@include fluid-type($min_width, $max_width, 24px, 24px);
+
+			@media screen and (min-width: 992px) {
+				min-height: 6rem;
+			}
+		}
+
+		p {
+			margin: 0 0 1rem;
+		}
+	}
+}
+
+.site-content {
+	margin-top: $header_height_mobile;
+
+	@media screen and (min-width: 992px) {
+		margin-top: $header_height_desktop;
+	}
+}
+
+.home .site-content {
+	margin-top: 0;
+}
+
+.content__wrapper,
+.content__wrapper--motionless {
 	margin: auto;
 	width: 90%;
-
 	padding: 2em 1em;
+	min-height: 20vh;
 
 	background: $color__background-body;
 
 	@media screen and (min-width: 992px) {
-		padding: 2em 5em;
+		padding: 3em 3em;
 	}
 
 	@media screen and (min-width: 1400px) {
 		width: 60%;
-		padding: 2em 7em;
+		padding: 4em 5em;
 	}
 
 	@media screen and (min-width: 1600px) {
@@ -82,6 +149,18 @@
 	// .entry-content {
 	// 	text-indent: 2em;
 	// }
+}
+
+.content__wrapper--motionless {
+	transform: translate(0, $post_up_distance--mobile);
+
+	.content__intro-text {
+		margin-top: 0 !important;
+	}
+
+	@media screen and (min-width: 992px) {
+		transform: translate(0, $post_up_distance--desktop);
+	}
 }
 
 .content__wrapper--up {
@@ -172,21 +251,22 @@
 			margin-top: $post_up_distance--mobile;
 
 			@media screen and (min-width: 992px) {
-				// margin-top: $post_up_distance--desktop;
+				margin-top: $post_up_distance--desktop;
 			}
 		}
 	}
 
-	.content__wrapper {
-		padding: 0;
+	.content__wrapper,
+	.content__wrapper--motionless {
+		// padding: 0;
 
-		@media screen and (min-width: 992px) {
-			padding: 4em 0;
-		}
+		// @media screen and (min-width: 992px) {
+		// 	padding: 4em 0;
+		// }
 
 		@media screen and (min-width: 1400px) {
 			width: 90%;
-			padding: 2em 7em;
+			padding: 4em 5em;
 		}
 
 		@media screen and (min-width: 1600px) {
@@ -196,15 +276,25 @@
 
 	.content {
 		&__intro-text {
-			padding: 1.5em;
+			padding: 0 1em 2.5em;
 			text-align: center;
 			margin: 0;
-			@include fluid-type($min_width, $max_width, 18px, 22px);
+
+			@include fluid-type($min_width, $max_width, 18px, 24px);
 
 			@media screen and (min-width: 992px) {
-				padding: 2em 0;
+				margin-top: 4rem;
 			}
+
+			// @media screen and (min-width: 992px) {
+			// 	padding: 0 1em 2.5em;
+			// }
 		}
+	}
+
+	&__content {
+		@include fluid-type($min_width, $max_width, 16px, 20px);
+		margin-top: 4rem;
 	}
 }
 
@@ -387,5 +477,234 @@ $secondary-color: #1d1f20;
 			text-align: center;
 			padding: 0.5rem 0.9rem;
 		}
+	}
+}
+
+/* Relacje Inwestorskie */
+
+.investors-relationships-menu-structure-container {
+	// ul#investors-relationships-menu-structure
+	margin-top: 2rem;
+
+	ul {
+		margin: 0;
+		list-style: none;
+	}
+
+	a {
+		position: relative;
+
+		&:before {
+			content: "";
+			position: absolute;
+			height: 2px;
+			width: 0%;
+			background: black;
+			left: 0;
+			bottom: -0.25em;
+			transition: all 0.3s ease-in-out;
+		}
+
+		&:hover {
+			@media screen and (max-width: 992px) {
+				font-weight: 600;
+			}
+
+			@media screen and (min-width: 992px) {
+				&:before {
+					content: "";
+					position: absolute;
+					height: 2px;
+					width: 100%;
+					background: black;
+					left: 0;
+					bottom: -0.25em;
+				}
+			}
+		}
+	}
+
+	#investors-relationships-menu-structure {
+		padding: 0;
+		text-align: center;
+
+		& > li {
+			margin-bottom: 2rem;
+
+			& > a {
+				font-weight: 700;
+				@include fluid-type($min_width, $max_width, 20px, 22px);
+			}
+		}
+	}
+
+	.sub-menu {
+		margin-top: 1rem;
+		padding-left: 1em;
+
+		li {
+			padding: 0.45em 0;
+
+			a {
+				@include fluid-type($min_width, $max_width, 16px, 18px);
+			}
+		}
+	}
+
+	// .menu-parent-link > a {
+
+	// }
+}
+
+/* MANAGEMENT */
+
+.page-template-management-page-template {
+	h3 {
+		text-align: center;
+	}
+}
+
+.management {
+	&__container {
+		flex-wrap: wrap;
+		margin-top: 10rem;
+
+		@media screen and (min-width: 992px) {
+			display: flex;
+			column-gap: 4rem;
+			justify-content: space-between;
+		}
+
+		&--top {
+			margin-top: 5rem;
+			margin-bottom: 5rem;
+
+			.person {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.person {
+	padding: 0 2em 1em;
+	border: 2px solid black;
+	flex: 1 1 28%;
+	margin-bottom: 10rem;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+
+	@media screen and (min-width: 992px) {
+		flex: 1 1 28%;
+	}
+
+	&__image-holder {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transform: translateY(-50%);
+
+		img {
+			object-fit: cover;
+			width: 10rem;
+			height: 10rem;
+		}
+	}
+
+	&__header {
+		transform: translateY(-50%);
+	}
+
+	&__name {
+		text-align: center;
+		font-weight: 700;
+		@include fluid-type($min_width, $max_width, 18px, 20px);
+
+		p {
+			margin: 0;
+		}
+	}
+
+	&__role {
+		p {
+			text-align: center;
+			font-style: italic;
+			margin-top: 0.5em;
+			@include fluid-type($min_width, $max_width, 13px, 15px);
+		}
+	}
+
+	&__description {
+		transform: translateY(-2rem);
+		p {
+			margin: 0;
+		}
+	}
+}
+
+/* SHAREHOLDING */
+
+.page-template-shareholding-structure-page-template {
+	.content__wrapper {
+		@media screen and (max-width: 992px) {
+			padding: 3em 0em;
+		}
+	}
+}
+
+.shareholding {
+	&__container {
+	}
+
+	&__position.header p {
+		color: black;
+		font-weight: 700;
+	}
+
+	&__position {
+		justify-content: center;
+		margin: auto;
+		cursor: pointer;
+
+		& > * {
+			flex: 1;
+		}
+
+		@media screen and (min-width: 992px) {
+			// width: fit-content;
+			max-width: 85%;
+		}
+	}
+
+	.media-post {
+		flex-flow: row;
+		padding: 10px 0;
+		column-gap: 1em;
+	}
+
+	.media-post__title {
+		padding-right: 0;
+		justify-content: center;
+		width: 20%;
+	}
+
+	.media-post p {
+		padding-left: 0rem;
+		text-align: center;
+
+		@include fluid-type($min_width, $max_width, 10px, 18px);
+
+		// @media screen and (max-width: 600px) {
+		// 	font-size: 11px;
+		// }
+
+		// @media screen and (max-width: 360px) {
+		// 	font-size: 10px;
+		// }
+	}
+
+	.name p {
+		text-align: left;
 	}
 }

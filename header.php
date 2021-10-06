@@ -8,10 +8,10 @@
  *
  * @package _s
  */
-
+global $post;
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> style="margin-top: 0!important">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,16 +51,141 @@
 
 			</button>
 
+			<div class="main-menu-container">
 
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-					'items_wrap' => '<a href="'.esc_url( home_url( '/' ) ).'" class="menu-logo" rel="home" aria-current="page"></a><ul id="%1$s" class="%2$s">%3$s</ul>',
-				)
-			);
-			?>
+				<?php
+				
+				echo '<a href="'.esc_url( home_url( '/' ) ).'" class="menu-logo" rel="home" aria-current="page"></a>';
+
+				?>
+
+				<div class="desktop-menu-container">
+
+					<div class="main-menus-wrapper">
+
+							<div class="dropdownBackground">
+								<span class="arrow"></span>
+							</div>
+
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'main-menu-top',
+								'menu_id'        => 'main-menu-top',
+							)
+						);
+
+						$root_parent_page_id = array_reverse(get_post_ancestors($post))[0];
+
+						?>
+
+						<?php
+
+						if (is_page(421) ||
+						$root_parent_page_id == 421 || 
+						is_singular( array( 'dok_korporacyjne', 'raporty_espi_ebi', 'corporate_events', 'general_meetings', 'komunikaty_prasowe', 'mails_to_shareholder',) ) ||
+						is_post_type_archive('dok_korporacyjne') ||
+						is_post_type_archive('raporty_espi_ebi') ||
+						is_tax('rodzaj_raportu') ||
+						is_post_type_archive('corporate_events') ||
+						is_tax('event_year') ||
+						is_post_type_archive('general_meetings') ||
+						is_tax('event_year_general_meeting')  ||
+						is_post_type_archive('komunikaty_prasowe') ||
+						is_post_type_archive('mails_to_shareholder')
+
+						) {
+
+							wp_nav_menu(
+								array(
+									'theme_location' => 'investors-relationships-menu',
+									'menu_id'        => 'investors-relationships-menu',
+									'menu_class' => 'menu main-menu-bottom',
+									'container_class' => 'menu-main-menu-bottom-container'
+								)
+							);
+
+						} else {
+
+							wp_nav_menu(
+								array(
+									'theme_location' => 'main-menu-bottom',
+									'menu_id'        => 'main-menu-bottom',
+									'menu_class' => 'menu main-menu-bottom',
+									'container_class' => 'menu-main-menu-bottom-container'
+								)
+							);
+
+						}
+
+						?>
+
+					</div>
+
+				</div><!-- desktop-menu-container -->
+
+
+				<div class="mobile-menu-container">
+						
+					<div class="main-menus-wrapper">
+
+						<?php
+						wp_nav_menu(
+						array(
+							'theme_location' => 'main-menu-top',
+							'menu_id'        => 'main-menu-top',
+						)
+						);
+
+						$root_parent_page_id = array_reverse(get_post_ancestors($post))[0];
+
+						?>
+
+						<?php
+
+						if (is_page(421) ||
+						$root_parent_page_id == 421 || 
+						is_singular( array( 'dok_korporacyjne', 'raporty_espi_ebi', 'corporate_events', 'general_meetings', 'komunikaty_prasowe') ) ||
+						is_post_type_archive('dok_korporacyjne') ||
+						is_post_type_archive('raporty_espi_ebi') ||
+						is_tax('rodzaj_raportu') ||
+						is_post_type_archive('corporate_events') ||
+						is_tax('event_year') ||
+						is_post_type_archive('general_meetings') ||
+						is_tax('event_year_general_meeting')  ||
+						is_post_type_archive('komunikaty_prasowe')
+						) {
+							
+						wp_nav_menu(
+							array(
+								'theme_location' => 'investors-relationships-menu',
+								'menu_id'        => 'investors-relationships-menu',
+								'menu_class' => 'menu main-menu-bottom main-menu-bottom--mobile',
+								'container_class' => 'menu-main-menu-bottom-container'
+							)
+						);
+
+						} else {
+
+						wp_nav_menu(
+							array(
+								'theme_location' => 'main-menu-bottom',
+								'menu_id'        => 'main-menu-bottom',
+								'menu_class' => 'menu main-menu-bottom main-menu-bottom--mobile',
+								'container_class' => 'menu-main-menu-bottom-container'
+							)
+						);
+
+						}
+
+						?>
+
+					</div>
+
+				</div>
+
+			</div>
+
 		</nav>
 
 	</header>
