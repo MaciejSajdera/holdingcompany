@@ -1,71 +1,67 @@
 // /**
 //  * Main JavaScript file.
 //  */
-// import Navigation from './navigation.js';
+import Navigation from "./navigation.js";
 // import skipLinkFocus from './skip-link-focus-fix.js';
 
 import smoothscroll from "smoothscroll-polyfill";
 
+import RevealChildrenOf from "./blogAnimations";
+
+import { clearFileInput } from "./helperFunctions";
+
 // document.addEventListener( 'DOMContentLoaded', () => {
-// 	const navigation = new Navigation();
 
 // 	skipLinkFocus();
 
-// 	navigation.setupNavigation();
 // 	navigation.enableTouchFocus();
 // } );
 
-const cookieInfo = document.querySelector("#cookie-text");
+setTimeout(() => {
+	cookiesNotification();
+}, 1000);
 
-if (cookieInfo) {
-	const cookieInfoText = document.querySelector("#cookie-text").innerHTML;
+const cookiesNotification = () => {
+	const cookiesInfo = document.querySelector(".cookie-law-notification");
+	const cookiesAcceptButton = document.querySelector("#cookie-law-button");
 
-	let cookieLaw = {
-		dId: "cookie-law-div",
-		bId: "cookie-law-button",
-		iId: "cookie-law-item",
-		show: function(e) {
-			if (localStorage.getItem(cookieLaw.iId)) return !1;
-			var o = document.createElement("div"),
-				i = document.createElement("p"),
-				t = document.createElement("button");
-			(i.innerHTML = e.msg),
-				(t.id = cookieLaw.bId),
-				(t.innerHTML = e.ok),
-				(o.id = cookieLaw.dId),
-				o.appendChild(t),
-				o.appendChild(i),
-				document.body.insertBefore(o, document.body.lastChild),
-				t.addEventListener("click", cookieLaw.hide);
-		},
-		hide: function() {
-			(document.getElementById(cookieLaw.dId).outerHTML = ""),
-				localStorage.setItem(cookieLaw.iId, "1");
-		}
-	};
+	if (localStorage.getItem("cookiesAreAccepted")) {
+		return;
+	} else {
+		cookiesInfo.classList.add("cookies-notification-on");
+		cookiesAcceptButton.addEventListener("click", () => {
+			localStorage.setItem("cookiesAreAccepted", "1");
+			cookiesInfo.classList.add("cookies-notification-off");
+		});
+		return;
+	}
+};
 
-	cookieLaw.show({
-		msg: cookieInfoText,
-		ok: "Akceptuję"
-	});
-}
+window.addEventListener("load", () => {
+	let vh = window.innerHeight * 0.01;
+	let fullVH = window.innerHeight;
+	document.documentElement.style.setProperty("--vh", `${vh}px`);
+	document.documentElement.style.setProperty("--fullVH", `${fullVH}px`);
+});
 
 window.addEventListener("resize", () => {
 	let vh = window.innerHeight * 0.01;
+	let fullVH = window.innerHeight;
 	document.documentElement.style.setProperty("--vh", `${vh}px`);
+	document.documentElement.style.setProperty("--fullVH", `${fullVH}px`);
 });
 
 document.addEventListener("DOMContentLoaded", event => {
 	const myPreloader = document.querySelector(".my-preloader");
 	const page = document.querySelector("#page");
-	const singlePostWrapper = document.querySelector(".single-post__wrapper");
+	const singlePostWrapper = document.querySelector(".content__wrapper");
 	const mainSlogan = document.querySelector("#mainSlogan");
 	const allPostsHeader = document.querySelector(".blog-posts__header");
 
 	setTimeout(() => {
 		myPreloader.classList.add("my-preloader-off");
 		singlePostWrapper
-			? singlePostWrapper.classList.add("single-post__wrapper--up")
+			? singlePostWrapper.classList.add("content__wrapper--up")
 			: "";
 	}, 1000);
 
@@ -73,13 +69,17 @@ document.addEventListener("DOMContentLoaded", event => {
 		myPreloader ? myPreloader.classList.add("my-preloader-none") : "";
 		page ? page.classList.add("page-loaded") : "";
 
+		const blogGrid = document.querySelector(".blog-grid");
+		new RevealChildrenOf(blogGrid, 4);
+
+		const jobOffersGrid = document.querySelector(".job-offers-grid");
+		new RevealChildrenOf(jobOffersGrid, 4);
+
 		const cookieLawDiv = document.querySelector("#cookie-law-div");
 		cookieLawDiv ? cookieLawDiv.classList.add("page-loaded") : "";
 
 		mainSlogan ? mainSlogan.classList.add("mainSlogan--up") : "";
-		document.body.classList.contains("blog") && allPostsHeader
-			? allPostsHeader.classList.add("allPostsHeader--up")
-			: "";
+		allPostsHeader ? allPostsHeader.classList.add("allPostsHeader--up") : "";
 	}, 1100);
 
 	smoothscroll.polyfill();
@@ -94,6 +94,13 @@ document.addEventListener("DOMContentLoaded", event => {
 			});
 		});
 	}
+
+	const mainNavigation = document.querySelector(".main-navigation");
+	const mainMenuContainer = document.querySelector(".menu-menu-1-container");
+
+	const navigation = new Navigation(mainNavigation, mainMenuContainer);
+
+	navigation.setupNavigation();
 
 	const structureTab = document.querySelector(".structure");
 
@@ -125,4 +132,58 @@ document.addEventListener("DOMContentLoaded", event => {
 			});
 		});
 	}
+
+	const fileInput = document.querySelector("input[type=file]");
+	const filenameContainer = document.querySelector("#filename");
+	const dropzone = document.querySelector(".upload-file-label");
+
+	const filename = document.createElement("P");
+	const removeFile = document.querySelector("#remove-file");
+
+	if (fileInput) {
+		fileInput.addEventListener("change", function() {
+			filenameContainer.appendChild(filename);
+			filename.innerText = fileInput.value.split("\\").pop();
+
+			filename ? (removeFile.style.display = "block") : "";
+		});
+
+		fileInput.addEventListener("dragenter", function() {
+			dropzone.classList.toggle("dragover");
+		});
+
+		fileInput.addEventListener("dragend", function() {
+			dropzone.classList.remove("dragover");
+		});
+
+		fileInput.addEventListener("drop", function() {
+			dropzone.classList.remove("dragover");
+		});
+
+		fileInput.addEventListener("dragexit", function() {
+			dropzone.classList.remove("dragover");
+		});
+
+		fileInput.addEventListener("dragleave", function() {
+			dropzone.classList.remove("dragover");
+		});
+
+		removeFile.addEventListener("click", function() {
+			clearFileInput(fileInput);
+
+			filenameContainer.removeChild(filename);
+			filename.innerText = "";
+			this.style.display = "none";
+		});
+	}
+
+	document.addEventListener(
+		"wpcf7mailsent",
+		function(event) {
+			filenameContainer.removeChild(filename);
+			filename.innerText = "";
+			removeFile.style.display = "none";
+		},
+		false
+	);
 });

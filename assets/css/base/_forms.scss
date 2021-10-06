@@ -34,7 +34,6 @@ input[type="search"] {
 	padding: 3px;
 }
 
-
 input[type="text"],
 input[type="email"],
 input[type="url"],
@@ -49,4 +48,228 @@ textarea {
 	&:focus {
 		color: $color__text-input-focus;
 	}
+}
+
+.subpage {
+	form {
+		padding: 0;
+
+		@media screen and (min-width: 992px) {
+			padding: 0 2em;
+		}
+
+		p {
+			margin: 0;
+		}
+
+		.wpcf7-form-control-wrap {
+			height: 100%;
+			display: block;
+		}
+
+		.wpcf7-not-valid-tip {
+			position: absolute;
+			display: block;
+			z-index: 1;
+			right: 10px;
+			top: 10px;
+			height: 100%;
+			/* width: 100%; */
+			/* border: 1px solid red; */
+			font-size: 13px;
+		}
+
+		.wpcf7-response-output {
+			text-align: center;
+			border: 0;
+			margin-top: 1em;
+		}
+
+		.ajax-loader {
+			margin: 1em auto;
+			display: none;
+		}
+
+		input,
+		textarea,
+		.upload-file-label {
+			padding: 1.25em 1em;
+			outline: none;
+			border-radius: 0;
+			width: 100%;
+			border: none;
+			border-bottom: 1px solid;
+			display: block;
+			border-color: $color__border-media;
+			resize: none;
+			transition: all 0.3s ease-in-out;
+
+			&:hover {
+				background: $color__lightest-grey;
+			}
+		}
+
+		.wpcf7-submit {
+			cursor: pointer;
+			border: 1px solid #000;
+		}
+
+		.ajax-loader {
+			background-image: url(../dist/img/form-loader-dark.gif) !important;
+			background-position: center;
+			background-size: contain;
+			width: 3em !important;
+			height: 3em !important;
+			background-color: transparent !important;
+
+			&:before {
+				display: none;
+			}
+		}
+
+		input[type="file"] {
+			position: absolute;
+			left: 0;
+			opacity: 0;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		}
+
+		.upload-file-label__wrapper {
+			border-bottom: 1px solid;
+			border-color: $color__border-media;
+			display: block;
+			br {
+				display: none;
+			}
+		}
+
+		.upload-file-label {
+			display: block;
+			height: 100%;
+			position: relative;
+			border: 2px dashed transparent;
+		}
+
+		// .upload-file-label,
+		// #filename {
+		// 	padding-left: 1em;
+		// }
+
+		.idupload-file {
+			position: absolute;
+			width: 100%;
+			top: 0;
+		}
+
+		#filename {
+			display: inline-block;
+			position: relative;
+			margin-top: 1em;
+
+			#remove-file {
+				position: absolute;
+				display: block;
+				width: 1em;
+				height: 1em;
+				top: -0.25em;
+				right: -1.25em;
+				cursor: pointer;
+				background-image: url(../dist/svg/close_button.svg);
+				background-position: center;
+				background-size: contain;
+				display: none;
+			}
+		}
+
+		.dragover {
+			background-color: $color__lightest-grey;
+			border: 2px dashed black;
+		}
+
+		label {
+			display: block;
+		}
+
+		.wpcf7-radio {
+			display: flex;
+			flex-flow: column;
+
+			.wpcf7-list-item-label {
+				width: 20em;
+			}
+
+			label {
+				display: flex;
+				flex-flow: row-reverse;
+				align-items: center;
+			}
+		}
+
+		.collaboration-type {
+			&__description {
+				padding: 1.25em 1em 0;
+				color: #666;
+				display: block;
+			}
+
+			select {
+				cursor: pointer;
+			}
+
+			br {
+				display: none;
+			}
+
+			&:hover {
+				background: $color__lightest-grey;
+			}
+		}
+
+		select {
+			// border: 1px solid $color__lightest-grey;
+			border-top: none;
+			border-right: none;
+			border-left: none;
+			border-bottom: 1px solid $color__border-media;
+			width: 100%;
+			margin-top: 0.5em;
+			min-height: 40px;
+			font-size: 0.95rem;
+			outline: none;
+			background: transparent !important;
+			padding: 1.25em 1em;
+		}
+
+		.button--black {
+			@include fluid-type($min_width, $max_width, 14px, 16px);
+		}
+	}
+
+	form.submitting {
+		.ajax-loader {
+			display: block;
+		}
+	}
+
+	form.invalid {
+		.wpcf7-response-output {
+			color: #dc3232;
+		}
+	}
+
+	form.sent {
+		.wpcf7-response-output {
+			color: #46b450;
+		}
+	}
+}
+
+.job-offer__form-section {
+	margin-bottom: 5em;
+}
+
+.grecaptcha-badge {
+	display: none !important;
 }

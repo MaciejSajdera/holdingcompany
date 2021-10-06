@@ -133,19 +133,28 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css' );
+	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css', array(), '4.91');
 
-	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '', true );
+	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '4.5', true);
+
+	wp_enqueue_script( 'blogAnimations', get_template_directory_uri() . '/dist/js/blogAnimations.js', array(), '4.4', true );
 
 	if (
 		is_front_page() || is_page_template('home-template.php') ) {
-		wp_enqueue_script( 'scrollAnimations', get_template_directory_uri() . '/dist/js/scrollAnimations.js', array(), '', true );
+		wp_enqueue_script( 'scrollAnimations', get_template_directory_uri() . '/dist/js/scrollAnimations.js', array(), '4.4', true );
 	};
 
-	if (
-		is_blog() ) {
-		wp_enqueue_script( 'blogAnimations', get_template_directory_uri() . '/dist/js/blogAnimations.js', array(), '', true );
-	};
+	// if (
+	// 	is_blog() ) {
+	// 		wp_enqueue_script( 'blogAnimations', get_template_directory_uri() . '/dist/js/blogAnimations.js', array(), '', true );
+	// };
+
+		if (
+			is_page_template('career-page-template.php') ) {
+			wp_enqueue_script( 'simple-ajax-post-pagination', get_template_directory_uri() . '/dist/js/simple-ajax-post-pagination.js', array(), '4.4', true );
+		};
+
+	
 	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -198,8 +207,12 @@ function my_custom_query( $posts_per_page = 4) {
 	  // other args here
 	); 
 	return new WP_Query( $args );
-  }
+}
 
+function wpcodex_add_excerpt_support_for_pages() {
+	add_post_type_support( 'job_offers', 'excerpt' );
+}
+add_action( 'init', 'wpcodex_add_excerpt_support_for_pages' );
 
 function my_load_more_scripts() {
  
@@ -255,6 +268,7 @@ function my_loadmore_ajax_handler(){
 
 add_action('wp_ajax_loadmore', 'my_loadmore_ajax_handler'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_loadmore', 'my_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+
 
 
 //for security reasons

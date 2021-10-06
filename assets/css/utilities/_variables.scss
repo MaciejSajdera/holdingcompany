@@ -5,7 +5,7 @@ $color__background-hr: #1e1e1e40;
 $color__background-button: #e6e6e6;
 $color__background-pre: #eee;
 $color__background-ins: #fff9c0;
-$color__background-lightgrey: #1e1e1e05;
+$color__background-lightgrey: #fafafa;
 
 $color__semiblack: #1e1e1e;
 
@@ -17,12 +17,20 @@ $color__link-visited: #800080; //purple
 $color__link-hover: #191970; //midnightblue
 $color__text-main: #404040;
 $color__white_text: #fff;
+$color__grey_text: #9a9a9a;
 
 $color__border-button: #ccc #ccc #bbb;
 $color__border-button-hover: #ccc #bbb #aaa;
 $color__border-button-focus: #aaa #bbb #bbb;
 $color__border-input: #1e1e1e40;
 $color__border-abbr: #666;
+$color__border-media: #1e1e1e10;
+$color__desc-media: #1e1e1e80;
+$color__lightest-grey: #1e1e1e05;
+
+/* BOX-SHADOWS */
+$box-shadow_standard: 0 0px 15px 5px rgb(0 0 0 / 10%),
+	0 0px 6px 0px rgb(0 0 0 / 5%);
 
 /* TYPOGRAPHY */
 $font__main: "Monda", sans-serif;
@@ -38,3 +46,9 @@ $size__site-sidebar: 25%;
 /* RWD */
 $break__medium: 40.063em;
 $break__large: 64.063em;
+
+/* Common values */
+$post_up_distance--mobile: -1.5rem;
+$post_up_distance--desktop: -6.5rem;
+
+$header_height: 5rem;

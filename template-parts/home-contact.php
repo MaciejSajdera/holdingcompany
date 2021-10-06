@@ -7,23 +7,19 @@
  * @package _s
  */
 
-$home_section_contact_header = get_field('home_section_contact_header');
-$home_section_contact_subheader = get_field('home_section_contact_subheader');
+$home_section_contact_header = get_field('home_section_contact_header', get_option( 'page_on_front' ));
+$home_section_contact_subheader = get_field('home_section_contact_subheader', get_option( 'page_on_front' ));
 
- $contact_name = get_field('contact_name');
- $contact_address = get_field('contact_address');
- $contact_nip = get_field('contact_nip');
- $contact__regon= get_field('contact_regon');
- $contact_phone = get_field('contact_phone');
- $contact_mail = get_field('contact_mail');
+ $contact_name = get_field('contact_name', get_option( 'page_on_front' ));
+ $contact_address = get_field('contact_address', get_option( 'page_on_front' ));
+ $contact_nip = get_field('contact_nip', get_option( 'page_on_front' ));
+ $contact__regon= get_field('contact_regon', get_option( 'page_on_front' ));
+ $contact_phone = get_field('contact_phone', get_option( 'page_on_front' ));
+ $contact_mail = get_field('contact_mail', get_option( 'page_on_front' ));
  
 ?>
 
-<section class="contact-section">
-		<div class="contact-section__header section-header">
-			<h3><?php echo $home_section_contact_header ?></h3>
-			<span class="sub-text--grey"><?php echo $home_section_contact_subheader ?></span>
-		</div>
+
 	<div class="contact-section__data-wrapper">
 
 		<div class="contact-section__data">
@@ -48,4 +44,3 @@ $home_section_contact_subheader = get_field('home_section_contact_subheader');
 
 	</div>
 
-</section>

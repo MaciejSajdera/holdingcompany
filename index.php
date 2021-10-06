@@ -12,7 +12,7 @@
  * @package evenus
  */
 
-get_header('blog');
+get_header();
 
 ?>
 
@@ -34,33 +34,8 @@ get_header('blog');
 			endif;
 			
 			?> 
-			<section>
+			<section class="blog-posts">
 			<div class="blog-grid"> <?php
-			/* Start the Loop */
-			// while ( have_posts() ) :
-
-			// 	the_post();
-
-			// 	/*
-			// 	 * Include the Post-Type-specific template for the content.
-			// 	 * If you want to override this in a child theme, then include a file
-			// 	 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-			// 	 */
-
-			// 	echo "<div class='post-wrapper'>";
-
-			// 		echo "<div class='post-upper-wrapper'>";
-			// 		if (has_post_thumbnail()):
-			// 			the_post_thumbnail();
-			// 		endif;
-
-			// 		echo "</div>";
-
-			// 	the_excerpt();
-
-			// 	echo "</div>";
-
-			// endwhile;
 
 			while (have_posts() ) :
 				// post_title();

@@ -12,7 +12,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 <div class="post-thumbnail" style="background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-repeat: no-repeat;"></div>
-		<div class="single-post__wrapper">
+		<div class="content__wrapper">
 			<header class="entry-header">
 			<div class="entry-meta">
 						<?php
