@@ -252,7 +252,7 @@ $mobile-menu-padding-top: 10rem;
 
 		@media screen and (min-width: 992px) {
 			justify-content: flex-end;
-			padding-right: 5em;
+			// padding-right: 5em;
 			padding-bottom: 0;
 			flex-flow: row;
 		}
@@ -274,6 +274,7 @@ $mobile-menu-padding-top: 10rem;
 			// padding: 1em;
 			position: relative;
 			white-space: nowrap;
+			@include fluid-type($min_width, $max_width, 16px, 16px);
 
 			&:before {
 				content: "";
@@ -353,7 +354,6 @@ $mobile-menu-padding-top: 10rem;
 				justify-content: flex-start;
 
 				a {
-					@include fluid-type($min_width, $max_width, 14px, 16px);
 					text-transform: inherit;
 					// padding-left: 15px;
 
@@ -408,6 +408,14 @@ $mobile-menu-padding-top: 10rem;
 		.trigger-enter-active {
 			.sub-menu {
 				opacity: 1;
+			}
+		}
+	}
+
+	.main-menu-bottom {
+		li {
+			a {
+				@include fluid-type($min_width, $max_width, 15px, 15px);
 			}
 		}
 	}
