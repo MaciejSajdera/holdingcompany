@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
 		if (e.target.classList.contains("page-numbers")) {
 			e.preventDefault();
 
-			console.log(this);
+			// console.log(this);
 
 			var properties_wrapper = $(".job-offers-wrapper");
 			var link = jQuery(e.target).attr("href");

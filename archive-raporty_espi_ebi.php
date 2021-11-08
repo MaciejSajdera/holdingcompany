@@ -23,75 +23,85 @@ get_header();
 					
 			<div class="content__wrapper--motionless">
 
-				<h3 class="content__intro-text">Brak sprawozdań finansowych na moment obecny. Pierwszym okres obrachunkowy spółki będzie okres 05.11.2020 - 31.12.2021.</h3>
+				<?php
 
-				<!-- <h3 class="content__intro-text">Wyszukiwarka raportów</h3> -->
+				$count_posts = wp_count_posts('raporty_espi_ebi')->publish;
 
-				<!-- <div> -->
+				if ( !have_posts() && $count_posts == 0) :
 
-				<!-- <?php echo do_shortcode( '[searchandfilter id="561"]' ); ?> -->
+					echo '<h3 class="content__intro-text">Brak sprawozdań finansowych na moment obecny. Pierwszym okresem obrachunkowym spółki będzie okres 05.11.2020 - 31.12.2021.</h3>';
 
-				<!-- </div>
+				else :
 
-				<div class="results"> -->
+				?>
 
-					<?php
+					<h3 class="content__intro-text">Wyszukiwarka raportów</h3>
 
-					// if ( have_posts() ) :
-					
-					?>
+					<div>
+
+					<?php echo do_shortcode( '[searchandfilter id="561"]' ); ?>
+
+					</div>
+
+					<div class="results">
 
 						<?php
-					// 	/* Start the Loop */
-					// 	while ( have_posts() ) :
-					// 		the_post();
 
-					// 		// var_dump(wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) ));
+						if ( have_posts() ) :
+						
+						?>
 
-					// 		echo '
-					// 			<div class="single-result">
+							<?php
+							/* Start the Loop */
+							while ( have_posts() ) :
+								the_post();
 
-					// 				<div class="single-result__content">
+								// var_dump(wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) ));
 
-					// 					<div class="single-result__top">
+								echo '
+									<div class="single-result">
 
-					// 						<p class="sub-text--grey">Opublikowano: '.get_the_date().'</p>
-					// 						<p class="sub-text--grey">Raport '.wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) )[0].' nr '.get_field('report_id').'</p>
+										<div class="single-result__content">
 
-					// 					</div>
+											<div class="single-result__top">
 
-					// 					<div class="single-result__bottom">
+												<p class="sub-text--grey">Opublikowano: '.get_the_date().'</p>
+												<p class="sub-text--grey">Raport '.wp_get_object_terms( $post->ID, 'rodzaj_raportu', array( 'fields' => 'names' ) )[0].' nr '.get_field('report_id').'</p>
 
-					// 						<p><a href="'.get_the_permalink().'">'.get_the_title().'</a></p>
+											</div>
 
-					// 					</div>
+											<div class="single-result__bottom">
 
-					// 				</div>
+												<p><a href="'.get_the_permalink().'">'.get_the_title().'</a></p>
 
-					// 				<a href="'.get_the_permalink().'"><p class="sub-text--grey read-more">Szczegóły<span class="arrow-right"></span></p></a>
+											</div>
+
+										</div>
+
+										<a href="'.get_the_permalink().'"><p class="sub-text--grey read-more">Szczegóły<span class="arrow-right"></span></p></a>
 
 
-					// 			</div>
-					// 		';
+									</div>
+								';
 
+								/*
+								* Include the Post-Type-specific template for the content.
+								* If you want to override this in a child theme, then include a file
+								* called content-___.php (where ___ is the Post Type name) and that will be used instead.
+								*/
+								// get_template_part( 'template-parts/content', get_post_type() );
+				
+							endwhile;
+				
+							the_posts_navigation();
+				
+						else :
+				
+							get_template_part( 'template-parts/content', 'none' );
+				
+						endif;
 
-			
-					// 		/*
-					// 		* Include the Post-Type-specific template for the content.
-					// 		* If you want to override this in a child theme, then include a file
-					// 		* called content-___.php (where ___ is the Post Type name) and that will be used instead.
-					// 		*/
-					// 		// get_template_part( 'template-parts/content', get_post_type() );
-			
-					// 	endwhile;
-			
-					// 	the_posts_navigation();
-			
-					// else :
-			
-					// 	get_template_part( 'template-parts/content', 'none' );
-			
-					// endif;
+					endif;
 
 					?>
 

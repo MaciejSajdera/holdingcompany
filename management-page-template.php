@@ -6,7 +6,6 @@
  */
 $management = get_field("management");
 
-
 $management_person_top = $management['management_person_top'];
 $management_person = $management['management_person'];
 
@@ -67,7 +66,7 @@ get_header();
 
 						if ($management_person) {
 							
-							echo '<div class="management management__container  management__container--bottom">';
+							echo '<div class="management management__container management__container--bottom">';
 					
 							foreach($management_person as $person) {
 

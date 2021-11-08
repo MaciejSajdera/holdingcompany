@@ -20,9 +20,9 @@ export const isElementInViewport = el => {
 
 export function clearFileInput(ctrl) {
 	try {
-		console.log(ctrl.value);
+		// console.log(ctrl.value);
 		ctrl.value = null;
-		console.log(ctrl.value);
+		// console.log(ctrl.value);
 	} catch (ex) {}
 	if (ctrl.value) {
 		ctrl.parentNode.replaceChild(ctrl.cloneNode(true), ctrl);
