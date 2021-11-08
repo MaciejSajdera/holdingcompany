@@ -178,36 +178,45 @@ export default class Navigation {
 				console.log("Media Query Mobile Matched!");
 
 				const nav = document.querySelector(".main-menu-bottom--mobile");
-				const allMenuLinks = nav.querySelectorAll("LI");
-				const linksWithChildren = nav.querySelectorAll(
-					".menu-item-has-children a"
-				);
-				const backButton = document.querySelector("#back-button");
 
-				linksWithChildren.forEach(link => {
-					link.nextElementSibling &&
-					link.nextElementSibling.classList.contains("sub-menu")
-						? (link.style.pointerEvents = "none")
-						: "";
+				const allMenuItemsWithChildren = nav.querySelectorAll(
+					".menu-item-has-children"
+				);
+
+				allMenuItemsWithChildren.forEach(item => {
+					const link = item.querySelector("A");
+					link.style.pointerEvents = "none";
 				});
 
-				nav.addEventListener("click", function(e) {
-					let backButtonAppended = false;
-					console.log(e.target);
+				// Flags
+				let backButtonAppended = false;
 
-					if (e.target.classList.contains("expand-menu-toggle")) {
-						// e.preventDefault();
+				document.addEventListener("click", function(e) {
+					// console.log(e.target);
 
-						e.target.querySelector("#back-button")
-							? e.target.querySelector("#back-button").remove()
+					if (e.target.classList.contains("menu-item-has-children")) {
+						const expandSubMenu = e.target.querySelector(".show-submenu");
+
+						expandSubMenu.querySelector("#back-button")
+							? expandSubMenu.querySelector("#back-button").remove()
 							: "";
 
 						const myBackButton = document.createElement("LI");
 						myBackButton.id = "back-button";
-						myBackButton.classList.add("back-button");
-						myBackButton.innerText = e.target.previousElementSibling.innerText;
+						myBackButton.classList.add("back-button", "menu-item");
 
-						const submenu = e.target.nextElementSibling;
+						const myBackButtonAnchor = document.createElement("A");
+						myBackButtonAnchor.setAttribute("href", "#");
+						myBackButtonAnchor.innerText =
+							expandSubMenu.previousElementSibling.innerText;
+
+						const myBackButtonSpan = document.createElement("SPAN");
+						myBackButtonSpan.classList.add("hide-submenu");
+
+						myBackButton.appendChild(myBackButtonAnchor);
+						myBackButton.appendChild(myBackButtonSpan);
+
+						const submenu = expandSubMenu.nextElementSibling;
 
 						const appendButton = () => {
 							if (!backButtonAppended) {
@@ -215,23 +224,21 @@ export default class Navigation {
 								backButtonAppended = true;
 							}
 						};
+
 						appendButton();
 
-						submenu.classList.add("sub-menu--expanded", "sub-menu--visible");
+						submenu.classList.add("sub-menu--expanded");
+					}
 
-						myBackButton.addEventListener("click", function(e) {
-							const submenuExpanded = this.closest(".sub-menu--expanded");
-							submenuExpanded.classList.contains("sub-menu--expanded")
-								? submenuExpanded.classList.remove("sub-menu--expanded")
-								: "";
+					if (e.target.classList.contains("back-button")) {
+						const submenuExpanded = e.target.closest(".sub-menu--expanded");
+						submenuExpanded.classList.remove("sub-menu--expanded");
 
-							setTimeout(() => {
-								this.remove();
-								submenu.classList.remove("sub-menu--visible");
-							}, 500);
+						setTimeout(() => {
+							e.target.remove();
+						}, 100);
 
-							backButtonAppended = false;
-						});
+						backButtonAppended = false;
 					} else {
 						return;
 					}

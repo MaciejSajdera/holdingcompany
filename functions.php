@@ -135,15 +135,15 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css', array(), '5.11');
+	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css', array(), '5.12');
 
-	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '5.06', true);
+	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '5.12', true);
 
-	wp_enqueue_script( 'blogAnimations', get_template_directory_uri() . '/dist/js/blogAnimations.js', array(), '5.06', true );
+	wp_enqueue_script( 'blogAnimations', get_template_directory_uri() . '/dist/js/blogAnimations.js', array(), '5.12', true );
 
 	if (
 		is_front_page() || is_page_template('home-template.php') ) {
-		wp_enqueue_script( 'scrollAnimations', get_template_directory_uri() . '/dist/js/scrollAnimations.js', array(), '5.06', true );
+		wp_enqueue_script( 'scrollAnimations', get_template_directory_uri() . '/dist/js/scrollAnimations.js', array(), '5.12', true );
 	};
 
 	// if (
@@ -187,6 +187,24 @@ function change_logo_on_single($html) {
 }
 
 add_filter('get_custom_logo','change_logo_on_single');
+
+function my_login_logo_one() { 
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+?> 
+<style type="text/css"> 
+body.login div#login h1 a {
+	background-image: url(<?php echo $image[0]; ?>);
+	width: 100%;
+	height: 100%;
+	max-width: 150px;
+	background-size: contain;
+	padding-bottom: 30px; 
+} 
+</style>
+	<?php 
+}
+add_action( 'login_enqueue_scripts', 'my_login_logo_one' );
 
 add_filter('get_the_archive_title_prefix','__return_false');
 
@@ -318,7 +336,7 @@ function wpdocs_add_menu_parent_class( $items ) {
 function prefix_add_button_after_menu_item_children( $item_output, $item, $depth, $args ) {
 
         if ( in_array( 'menu-item-has-children', $item->classes ) || in_array( 'page_item_has_children', $item->classes ) ) {
-            $item_output = str_replace( $args->link_after . '</a>', $args->link_after . '</a><span class="expand-menu-toggle" aria-expanded="false" aria-pressed="false"></span>', $item_output );
+            $item_output = str_replace( $args->link_after . '</a>', $args->link_after . '</a><span class="show-submenu" aria-expanded="false" aria-pressed="false"></span>', $item_output );
         }
 
     return $item_output;
