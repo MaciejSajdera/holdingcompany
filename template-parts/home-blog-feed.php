@@ -63,3 +63,29 @@ $home_section_blog_subheader = get_field('home_section_blog_subheader');
 		
 		</div>
 	</section>
+	<section class="stock">
+		<div class="stock-wrapper">
+		<?php
+
+// Wymagane jest aby w php.ini ustawić parametr allow_url_fopen na true / on
+
+$url = "http://notowania.gpw.pl/wyniki/a45_u__8c/n_SLV_full_data.html";
+
+// Po upublicznieniu spółki, wystarczy tylko zmienić powyższy adres URL. GPW powinno Wam wysłać odpowiedni link
+
+$xml = new SimpleXMLElement($url, null, true);
+
+$total = (count($xml->kurs))-1;
+$percent = number_format((float)$xml->kurs_odniesienia - $xml->kurs[$total]->pion, 2, '.', '');
+
+?>
+
+<!--  Wyświetlanie ostatniej ceny akcji -->
+	<b class="price"><?php echo number_format((float)$xml->kurs[$total]->pion, 2, '.', '')." PLN"; ?></b>
+<!--  Wyświeltanie różnicy aktualnego kursu i kursu początkowego  -->
+	<p class="percent"style="<?php if($percent == 0)echo "color:black;";elseif($percent < 0)echo "color:red;";else echo"color:green;" ?>"><?php echo $percent."%"; ?></p>
+<!--  Wyświetlanie nazwy emitenta, ostatniej daty kursu  -->
+	<p class="stock-info"><?php echo $xml->papier;?> | <?php echo $xml->kurs[$total]->poziom ?> | GPW</p>
+		</div>
+	</section>
+

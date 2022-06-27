@@ -22,6 +22,42 @@ section.blog-posts {
 	}
 }
 
+.stock {
+	
+
+	&-wrapper {
+		border: 1px solid rgba(30,30,30,0.25098);
+		padding: 4.5rem 0;
+		display: flex;
+    	flex-direction: column;
+    	align-items: center;
+    	justify-content: center;
+
+		.price {
+			font-size: 2rem;
+			@media screen and (min-width: 992px) {
+				font-size: 3rem;
+			}
+		}
+
+		.percent {
+			font-size: 0.8rem;
+			margin: 0;
+			@media screen and (min-width: 992px) {
+				font-size: 1.75rem;
+			}
+		}
+
+		.stock-info {
+			font-size: 0.8rem;
+			color: #d3d3d3;
+			@media screen and (min-width: 992px) {
+				font-size: 1rem;
+			}
+		}
+	}
+}
+
 #my-page-header {
 	background: $color__semiblack;
 	background-position: 20%;
