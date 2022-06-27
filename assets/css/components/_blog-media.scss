@@ -74,6 +74,10 @@
 		flex-flow: column;
 	}
 
+	@media screen and (min-width: 2000px) {
+		height: 35rem;
+	}
+
 	h3 {
 		width: 100%;
 	}
@@ -88,6 +92,10 @@
 
 		@media screen and (min-width: 992px) {
 			width: 100%;
+		}
+
+		@media screen and (min-width: 2000px) {
+			min-height: 22rem;
 		}
 	}
 
